@@ -35,7 +35,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   const url = `https://blog.elmerjacobo.dev/blog/${slug}`;
-  const ogImage = 'https://blog.elmerjacobo.dev/og-image.png'; // Puedes crear una imagen genérica o específica
 
   return {
     title: `${post.title} | Blog - Elmer Jacobo`,
@@ -54,21 +53,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       modifiedTime: post.date,
       authors: ['Elmer Jacobo'],
       tags: post.tags,
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.summary,
       creator: '@elmerjacobo',
-      images: [ogImage],
     },
   };
 }
@@ -170,7 +160,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.summary,
-    image: 'https://blog.elmerjacobo.dev/og-image.png',
+    image: `https://blog.elmerjacobo.dev/blog/${slug}/opengraph-image`,
     author: {
       '@type': 'Person',
       name: 'Elmer Jacobo',

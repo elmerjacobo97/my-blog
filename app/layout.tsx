@@ -13,11 +13,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Blog - Elmer Jacobo | React Native & Desarrollo Web',
+    default: 'Blog - Elmer Jacobo | Full Stack Developer',
     template: '%s | Blog - Elmer Jacobo',
   },
   description:
-    'Blog especializado en React Native y desarrollo web. Guías, tutoriales y soluciones sobre React Native, Expo, Next.js, TypeScript y desarrollo móvil multiplataforma.',
+    'Blog de desarrollo Full Stack. Guías, tutoriales y soluciones sobre React Native, Expo, Next.js, TypeScript, desarrollo móvil y web.',
   keywords: [
     'react native',
     'desarrollo móvil',
@@ -41,24 +41,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_PE',
     url: 'https://blog.elmerjacobo.dev',
-    title: 'Blog - Elmer Jacobo | React Native & Desarrollo Web',
-    description: 'Blog especializado en React Native, Expo, Next.js y desarrollo móvil multiplataforma.',
+    title: 'Blog - Elmer Jacobo | Full Stack Developer',
+    description: 'Blog de desarrollo Full Stack. Guías, tutoriales y soluciones sobre React Native, Expo, Next.js, TypeScript y desarrollo web.',
     siteName: 'Blog - Elmer Jacobo',
-    images: [
-      {
-        url: 'https://blog.elmerjacobo.dev/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Blog - Elmer Jacobo',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog - Elmer Jacobo | React Native & Desarrollo Web',
-    description: 'Blog especializado en React Native, Expo, Next.js y desarrollo móvil multiplataforma.',
+    title: 'Blog - Elmer Jacobo | Full Stack Developer',
+    description: 'Blog de desarrollo Full Stack. Guías, tutoriales y soluciones sobre React Native, Expo, Next.js, TypeScript y desarrollo web.',
     creator: '@elmerjacobo',
-    images: ['https://blog.elmerjacobo.dev/og-image.png'],
   },
   robots: {
     index: true,
