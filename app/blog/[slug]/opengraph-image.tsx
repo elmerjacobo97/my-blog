@@ -15,17 +15,8 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   if (!post) {
     return new ImageResponse(
       (
-        <div
-          style={{
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#0A0520',
-          }}
-        >
-          <div style={{ fontSize: 48, color: '#F5F5F8' }}>Post no encontrado</div>
+        <div tw="flex w-full h-full items-center justify-center bg-[#0A0520]">
+          <div tw="flex text-5xl text-[#F5F5F8]">Post no encontrado</div>
         </div>
       ),
       { ...size }
@@ -44,64 +35,25 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   return new ImageResponse(
     (
-      <div
-        style={{
-          height: '100%',
-          width: '100%',
-          display: 'flex',
-          backgroundColor: '#0A0520',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            padding: '60px 70px',
-          }}
-        >
+      <div tw="flex w-full h-full bg-[#0A0520]">
+        <div tw="flex flex-col w-full p-[60px_70px]">
           {/* Top gradient border */}
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-              height: 4,
-              background: 'linear-gradient(90deg, #3206A4 0%, #6B2AE8 100%)',
-              marginBottom: 40,
-            }}
-          />
+          <div tw="flex w-full h-1 bg-gradient-to-r from-[#3206A4] to-[#6B2AE8] mb-10" />
 
           {/* Blog badge and tags container */}
-          <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 40 }}>
+          <div tw="flex flex-col mb-10">
             {/* Blog badge */}
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: 20 }}>
-              <div
-                style={{
-                  display: 'flex',
-                  width: 6,
-                  height: 6,
-                  borderRadius: '50%',
-                  background: '#6B2AE8',
-                  marginRight: 12,
-                }}
-              />
-              <div style={{ display: 'flex', fontSize: 22, fontWeight: 700, color: '#6B2AE8' }}>BLOG</div>
+            <div tw="flex items-center mb-5">
+              <div tw="flex w-1.5 h-1.5 rounded-full bg-[#6B2AE8] mr-3" />
+              <div tw="flex text-xl font-bold text-[#6B2AE8]">BLOG</div>
             </div>
 
             {/* Tags */}
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <div tw="flex flex-wrap">
               {displayTags.map((tag, i) => (
                 <div
                   key={i}
-                  style={{
-                    display: 'flex',
-                    padding: '6px 14px',
-                    backgroundColor: 'rgba(107, 42, 232, 0.12)',
-                    border: '1px solid rgba(107, 42, 232, 0.3)',
-                    borderRadius: 20,
-                    fontSize: 14,
-                    color: '#A78BFA',
-                  }}
+                  tw="flex px-3.5 py-1.5 mr-2 mb-2 bg-[rgba(107,42,232,0.12)] border border-[rgba(107,42,232,0.3)] rounded-2xl text-sm text-[#A78BFA]"
                 >
                   #{tag}
                 </div>
@@ -110,56 +62,23 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           </div>
 
           {/* Main content */}
-          <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <div tw="flex flex-col flex-1">
             {/* Title */}
-            <div
-              style={{
-                display: 'flex',
-                fontSize: 52,
-                fontWeight: 900,
-                color: '#FAFAFA',
-                lineHeight: 1.1,
-                marginBottom: 20,
-              }}
-            >
-              {title}
-            </div>
+            <div tw="flex text-5xl font-black text-white leading-tight mb-5">{title}</div>
 
             {/* Summary */}
-            <div
-              style={{
-                display: 'flex',
-                fontSize: 20,
-                color: '#A1A1AA',
-                lineHeight: 1.4,
-              }}
-            >
-              {summary}
-            </div>
+            <div tw="flex text-xl text-[#A1A1AA] leading-relaxed">{summary}</div>
           </div>
 
           {/* Footer */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingTop: 24,
-              borderTop: '1px solid rgba(107, 42, 232, 0.2)',
-              marginTop: 40,
-            }}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', fontSize: 17, fontWeight: 600, color: '#E4E4E7', marginBottom: 4 }}>
-                Elmer Jacobo
-              </div>
-              <div style={{ display: 'flex', fontSize: 14, color: '#71717A' }}>
+          <div tw="flex justify-between items-center pt-6 border-t border-[rgba(107,42,232,0.2)] mt-10">
+            <div tw="flex flex-col">
+              <div tw="flex text-lg font-semibold text-[#E4E4E7] mb-1">Elmer Jacobo</div>
+              <div tw="flex text-sm text-[#71717A]">
                 {formattedDate} • {post.readingTime}
               </div>
             </div>
-            <div style={{ display: 'flex', fontSize: 16, color: '#6B2AE8', fontWeight: 600 }}>
-              blog.elmerjacobo.dev
-            </div>
+            <div tw="flex text-base text-[#6B2AE8] font-semibold">blog.elmerjacobo.dev</div>
           </div>
         </div>
       </div>
