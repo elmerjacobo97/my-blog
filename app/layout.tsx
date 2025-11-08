@@ -42,14 +42,25 @@ export const metadata: Metadata = {
     locale: 'es_PE',
     url: 'https://blog.elmerjacobo.dev',
     title: 'Blog - Elmer Jacobo | Full Stack Developer',
-    description: 'Blog de desarrollo Full Stack. Guías, tutoriales y soluciones sobre React Native, Expo, Next.js, TypeScript y desarrollo web.',
+    description:
+      'Blog de desarrollo Full Stack. Guías, tutoriales y soluciones sobre React Native, Expo, Next.js, TypeScript y desarrollo web.',
     siteName: 'Blog - Elmer Jacobo',
+    images: [
+      {
+        url: 'https://blog.elmerjacobo.dev/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Blog - Elmer Jacobo | Full Stack Developer',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Blog - Elmer Jacobo | Full Stack Developer',
-    description: 'Blog de desarrollo Full Stack. Guías, tutoriales y soluciones sobre React Native, Expo, Next.js, TypeScript y desarrollo web.',
+    description:
+      'Blog de desarrollo Full Stack. Guías, tutoriales y soluciones sobre React Native, Expo, Next.js, TypeScript y desarrollo web.',
     creator: '@elmerjacobo',
+    images: ['https://blog.elmerjacobo.dev/opengraph-image'],
   },
   robots: {
     index: true,
