@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { getPostBySlug, getAllSlugs, getAllPosts } from '@/lib/posts';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -96,7 +96,12 @@ const components = {
   code: (props: React.HTMLAttributes<HTMLElement>) => {
     const hasClassName = 'className' in props && props.className;
     if (hasClassName) {
-      return <code className="block bg-card border rounded-lg p-4 overflow-x-auto text-sm font-mono mb-4 max-w-full" {...props} />;
+      return (
+        <code
+          className="block bg-card border rounded-lg p-4 overflow-x-auto text-sm font-mono mb-4 max-w-full"
+          {...props}
+        />
+      );
     }
     return <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono break-words" {...props} />;
   },
@@ -122,19 +127,13 @@ const components = {
       <table className="w-full border-collapse border border-border" {...props} />
     </div>
   ),
-  thead: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
-    <thead className="bg-muted" {...props} />
-  ),
+  thead: (props: React.HTMLAttributes<HTMLTableSectionElement>) => <thead className="bg-muted" {...props} />,
   tbody: (props: React.HTMLAttributes<HTMLTableSectionElement>) => <tbody {...props} />,
-  tr: (props: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr className="border-b border-border" {...props} />
-  ),
+  tr: (props: React.HTMLAttributes<HTMLTableRowElement>) => <tr className="border-b border-border" {...props} />,
   th: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th className="px-4 py-3 text-left font-semibold text-sm" {...props} />
   ),
-  td: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
-    <td className="px-4 py-3 text-sm" {...props} />
-  ),
+  td: (props: React.HTMLAttributes<HTMLTableCellElement>) => <td className="px-4 py-3 text-sm" {...props} />,
   Callout,
 };
 
@@ -211,14 +210,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 overflow-x-hidden">
       {/* JSON-LD Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <article className="overflow-x-hidden">
         {/* Header */}

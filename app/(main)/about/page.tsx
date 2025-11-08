@@ -8,6 +8,23 @@ import { Separator } from '@/components/ui/separator';
 export const metadata = {
   title: 'Sobre mí | Blog - Elmer Jacobo',
   description: 'Desarrollador full-stack apasionado por compartir conocimiento y resolver problemas técnicos.',
+  alternates: {
+    canonical: 'https://blog.elmerjacobo.dev/about',
+  },
+  openGraph: {
+    title: 'Sobre mí - Elmer Jacobo',
+    description: 'Desarrollador full-stack apasionado por compartir conocimiento y resolver problemas técnicos',
+    url: 'https://blog.elmerjacobo.dev/about',
+    siteName: 'Blog - Elmer Jacobo',
+    locale: 'es_PE',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sobre mí - Elmer Jacobo',
+    description: 'Desarrollador full-stack apasionado por compartir conocimiento',
+    creator: '@elmerjacobo',
+  },
 };
 
 export default function AboutPage() {

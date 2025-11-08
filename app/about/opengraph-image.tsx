@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Blog - Elmer Jacobo | Full Stack Developer';
+export const alt = 'Sobre mí - Elmer Jacobo';
 export const size = {
   width: 1200,
   height: 630,
@@ -84,10 +84,9 @@ export default async function Image() {
                 color: '#FAFAFA',
                 marginBottom: 24,
                 lineHeight: 1,
-                letterSpacing: '-0.02em',
               }}
             >
-              Elmer Jacobo
+              Sobre mí
             </div>
 
             {/* Subtitle */}
@@ -100,7 +99,7 @@ export default async function Image() {
                 maxWidth: 800,
               }}
             >
-              Blog sobre desarrollo web, móvil y buenas prácticas
+              Desarrollador full-stack apasionado por compartir conocimiento
             </div>
 
             {/* Tech stack */}
@@ -113,7 +112,7 @@ export default async function Image() {
                 maxWidth: 700,
               }}
             >
-              {['React Native', 'Expo', 'Next.js', 'TypeScript', 'Node.js'].map((tech, i) => (
+              {['React', 'React Native', 'Next.js', 'TypeScript', 'Node.js', 'Laravel'].map((tech, i) => (
                 <div
                   key={i}
                   style={{
