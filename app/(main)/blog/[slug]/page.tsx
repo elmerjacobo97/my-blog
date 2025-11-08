@@ -34,16 +34,41 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  const url = `https://blog.elmerjacobo.dev/blog/${slug}`;
+  const ogImage = 'https://blog.elmerjacobo.dev/og-image.png'; // Puedes crear una imagen genérica o específica
+
   return {
     title: `${post.title} | Blog - Elmer Jacobo`,
     description: post.summary,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
       description: post.summary,
+      url: url,
+      siteName: 'Blog - Elmer Jacobo',
+      locale: 'es_PE',
       type: 'article',
       publishedTime: post.date,
+      modifiedTime: post.date,
       authors: ['Elmer Jacobo'],
       tags: post.tags,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.summary,
+      creator: '@elmerjacobo',
+      images: [ogImage],
     },
   };
 }
@@ -139,8 +164,72 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const postUrl = `https://blog.elmerjacobo.dev/blog/${slug}`;
 
+  // JSON-LD Structured Data para SEO
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.summary,
+    image: 'https://blog.elmerjacobo.dev/og-image.png',
+    author: {
+      '@type': 'Person',
+      name: 'Elmer Jacobo',
+      url: 'https://elmerjacobo.dev',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Elmer Jacobo',
+      url: 'https://elmerjacobo.dev',
+    },
+    datePublished: post.date,
+    dateModified: post.date,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': postUrl,
+    },
+    keywords: post.tags.join(', '),
+    url: postUrl,
+    articleSection: 'Technology',
+    inLanguage: 'es-PE',
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Inicio',
+        item: 'https://blog.elmerjacobo.dev',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://blog.elmerjacobo.dev',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: postUrl,
+      },
+    ],
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 overflow-x-hidden">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <article className="overflow-x-hidden">
         {/* Header */}
         <header className="mb-8">
