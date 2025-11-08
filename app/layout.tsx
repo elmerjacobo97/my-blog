@@ -44,12 +44,21 @@ export const metadata: Metadata = {
     title: 'Blog - Elmer Jacobo | React Native & Desarrollo Web',
     description: 'Blog especializado en React Native, Expo, Next.js y desarrollo móvil multiplataforma.',
     siteName: 'Blog - Elmer Jacobo',
+    images: [
+      {
+        url: 'https://blog.elmerjacobo.dev/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Blog - Elmer Jacobo',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Blog - Elmer Jacobo | React Native & Desarrollo Web',
     description: 'Blog especializado en React Native, Expo, Next.js y desarrollo móvil multiplataforma.',
     creator: '@elmerjacobo',
+    images: ['https://blog.elmerjacobo.dev/og-image.png'],
   },
   robots: {
     index: true,
