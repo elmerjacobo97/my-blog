@@ -1,0 +1,67 @@
+---
+title: 'Cómo desplegar un subdominio en Vercel paso a paso'
+date: '2025-10-27'
+summary: 'Configura un subdominio (ej. blog.elmerjacobo.dev) y conecta tu repo en Vercel sin romper tu site principal.'
+tags: ['Vercel', 'DNS', 'Deploy']
+---
+
+## Introducción
+
+Desplegar un subdominio en Vercel puede parecer complicado al principio, pero una vez entiendes el proceso, es bastante directo. En esta guía te mostraré cómo configurar un subdominio para tu blog sin afectar tu sitio principal.
+
+## Prerrequisitos
+
+Antes de empezar, asegúrate de tener:
+
+- Una cuenta en Vercel
+- Un dominio configurado (en mi caso `elmerjacobo.dev`)
+- Un repositorio de GitHub con tu proyecto de blog
+
+## Paso 1: Crear un nuevo proyecto en Vercel
+
+1. Ve a tu dashboard de Vercel
+2. Haz clic en "Add New Project"
+3. Selecciona tu repositorio de GitHub
+4. Configura las variables de entorno si las necesitas
+5. Despliega el proyecto
+
+```bash
+# Tu proyecto se desplegará en algo como:
+# my-blog-abc123.vercel.app
+```
+
+## Paso 2: Configurar el subdominio
+
+Una vez desplegado tu proyecto:
+
+1. Ve a **Settings** → **Domains**
+2. Agrega tu subdominio (ej: `blog.elmerjacobo.dev`)
+3. Vercel te dará instrucciones para configurar DNS
+
+## Paso 3: Configurar DNS
+
+En tu proveedor de DNS (Cloudflare, Namecheap, etc.):
+
+```
+Type: CNAME
+Name: blog
+Value: cname.vercel-dns.com
+```
+
+Espera unos minutos a que se propaguen los cambios DNS.
+
+## Paso 4: Verificar
+
+Vercel verificará automáticamente la configuración. Cuando veas el checkmark verde, tu blog estará live en tu subdominio!
+
+## Tips adicionales
+
+- Usa `pnpm` en lugar de `npm` para instalar dependencias más rápido
+- Configura redirects si necesitas mantener compatibilidad con URLs anteriores
+- Habilita SSL automáticamente (Vercel lo hace por defecto)
+
+## Conclusión
+
+Desplegar subdominios en Vercel es simple una vez entiendes el flujo. Ahora puedes tener tu portafolio en `elmerjacobo.dev` y tu blog en `blog.elmerjacobo.dev` sin problemas!
+
+¿Tienes dudas? Déjame un comentario en GitHub.

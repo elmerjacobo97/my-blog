@@ -4,119 +4,197 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
+  --breakpoint-xs: 30rem;
+  --breakpoint-3xl: 120rem;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
+/* ============================================
+   🎨 PALETA DE COLORES - TEMA CLARO
+   ============================================ */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.625rem; /* 10px - Border radius global */
+
+  /* 🌟 COLORES BASE */
+  --background: oklch(98% 0.002 280); /* #FAFAFF - Fondo blanco con tinte púrpura */
+  --foreground: oklch(12% 0.03 280); /* #0D0626 - Negro púrpura profundo */
+
+  /* 📦 CARDS Y POPOVERS */
+  --card: oklch(100% 0 0); /* #FFFFFF - Tarjetas blanco puro */
+  --card-foreground: oklch(12% 0.03 280); /* #0D0626 - Texto en tarjetas */
+  --popover: oklch(100% 0 0); /* #FFFFFF - Fondo popovers */
+  --popover-foreground: oklch(12% 0.03 280); /* #0D0626 - Texto popovers */
+
+  /* 🎯 COLOR PRINCIPAL (TU PÚRPURA) */
+  --primary: oklch(35% 0.22 280); /* #3206A4 - Tu color favorito! */
+  --primary-foreground: oklch(98% 0.002 280); /* #FAFAFF - Texto sobre primary */
+
+  /* 🎨 COLOR SECUNDARIO (Púrpura más claro) */
+  --secondary: oklch(92% 0.04 280); /* #EDE8FA - Púrpura muy suave */
+  --secondary-foreground: oklch(25% 0.1 280); /* #1F0B5C - Púrpura oscuro */
+
+  /* 🔇 COLORES NEUTROS (Grises con tinte púrpura) */
+  --muted: oklch(94% 0.01 280); /* #F0F0F5 - Gris púrpura claro */
+  --muted-foreground: oklch(48% 0.04 280); /* #6B6287 - Gris púrpura medio */
+
+  /* ✨ ACCENT (Hover states, highlights) */
+  --accent: oklch(90% 0.05 280); /* #E3DAF7 - Púrpura pastel */
+  --accent-foreground: oklch(20% 0.08 280); /* #170947 - Púrpura muy oscuro */
+
+  /* ⚠️ ESTADOS (Error, Success, Warning) */
+  --destructive: oklch(58% 0.2 15); /* #E74C3C - Rojo para errores */
+  --success: oklch(62% 0.15 145); /* #27AE60 - Verde para éxito */
+  --warning: oklch(72% 0.18 65); /* #F39C12 - Naranja para advertencias */
+
+  /* 🖼️ BORDES Y ELEMENTOS */
+  --border: oklch(88% 0.02 280); /* #D9D4E5 - Borde púrpura suave */
+  --input: oklch(88% 0.02 280); /* #D9D4E5 - Bordes de inputs */
+  --ring: oklch(35% 0.22 280); /* #3206A4 - Focus rings (tu púrpura) */
 }
 
+/* ============================================
+   🌙 PALETA DE COLORES - TEMA OSCURO
+   ============================================ */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* 🌟 COLORES BASE */
+  --background: oklch(8% 0.04 280); /* #0A0520 - Negro púrpura (AJUSTADO) */
+  --foreground: oklch(95% 0.005 280); /* #F5F5F8 - Texto claro con tinte púrpura */
+
+  /* 📦 CARDS Y POPOVERS */
+  --card: oklch(12% 0.05 280); /* #120931 - Tarjetas púrpura oscuro elevado */
+  --card-foreground: oklch(95% 0.005 280); /* #F5F5F8 - Texto en tarjetas */
+  --popover: oklch(12% 0.05 280); /* #120931 - Fondo popovers */
+  --popover-foreground: oklch(95% 0.005 280); /* #F5F5F8 - Texto popovers */
+
+  /* 🎯 COLOR PRINCIPAL (Púrpura más brillante para contraste) */
+  --primary: oklch(58% 0.22 280); /* #6B2AE8 - Versión brillante de tu púrpura */
+  --primary-foreground: oklch(98% 0.002 280); /* #FAFAFF - Texto sobre primary */
+
+  /* 🎨 COLOR SECUNDARIO */
+  --secondary: oklch(18% 0.08 280); /* #1A0D42 - Púrpura oscuro profundo */
+  --secondary-foreground: oklch(90% 0.02 280); /* #E6E3F0 - Texto claro púrpura */
+
+  /* 🔇 COLORES NEUTROS */
+  --muted: oklch(15% 0.04 280); /* #140A30 - Gris púrpura oscuro */
+  --muted-foreground: oklch(60% 0.03 280); /* #8E84A8 - Gris púrpura medio */
+
+  /* ✨ ACCENT */
+  --accent: oklch(20% 0.08 280); /* #1D0F47 - Púrpura oscuro para hover */
+  --accent-foreground: oklch(90% 0.02 280); /* #E6E3F0 - Texto sobre accent */
+
+  /* ⚠️ ESTADOS */
+  --destructive: oklch(65% 0.18 15); /* #E74C3C - Rojo más brillante */
+  --success: oklch(65% 0.13 145); /* #2ECC71 - Verde más brillante */
+  --warning: oklch(75% 0.16 65); /* #F1C40F - Amarillo más brillante */
+
+  /* 🖼️ BORDES Y ELEMENTOS */
+  --border: oklch(25% 0.05 280); /* #221652 - Borde púrpura oscuro */
+  --input: oklch(22% 0.06 280); /* #1C1147 - Input púrpura oscuro */
+  --ring: oklch(58% 0.22 280); /* #6B2AE8 - Focus rings púrpura brillante */
 }
 
+/* ============================================
+   🎨 CLASES UTILITARIAS PERSONALIZADAS
+   ============================================ */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Animaciones removidas para evitar distracciones en un blog */
+
+  /* 🌈 GRADIENTES PERSONALIZADOS */
+  .gradient-primary {
+    background: linear-gradient(135deg, #3206a4 0%, #6b2ae8 100%);
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, #0a0520 0%, #1a0d42 50%, #0a0520 100%);
+  }
+
+  .gradient-card {
+    background: linear-gradient(180deg, #120931 0%, #0a0520 100%);
+  }
+
+  /* ✨ EFECTOS DE BRILLO PÚRPURA */
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(107, 42, 232, 0.3);
+  }
+
+  .border-glow {
+    border: 1px solid rgba(107, 42, 232, 0.2);
+    box-shadow: 0 0 10px rgba(107, 42, 232, 0.1);
   }
 }
+
+/* Keyframes de animaciones removidos */
+
+/* ============================================
+   📊 REFERENCIA RÁPIDA HEX
+   ============================================
+   
+   🎨 TU PÚRPURA BASE: #3206A4
+   
+   TEMA CLARO:
+   -----------
+   Background:    #FAFAFF (blanco con tinte púrpura)
+   Foreground:    #0D0626 (negro púrpura)
+   Primary:       #3206A4 (TU PÚRPURA - oscuro e intenso)
+   Secondary:     #EDE8FA (púrpura muy claro)
+   Accent:        #E3DAF7 (púrpura pastel)
+   Muted:         #F0F0F5 (gris púrpura claro)
+   Border:        #D9D4E5 (borde púrpura suave)
+   
+   TEMA OSCURO:
+   ------------
+   Background:    #0A0520 (negro púrpura profundo - MEJORADO)
+   Foreground:    #F5F5F8 (blanco con tinte púrpura)
+   Primary:       #6B2AE8 (púrpura brillante - versión clara)
+   Secondary:     #1A0D42 (púrpura oscuro)
+   Card:          #120931 (tarjetas elevadas)
+   Muted:         #140A30 (gris púrpura oscuro)
+   Border:        #221652 (borde púrpura oscuro)
+   
+   GRADIENTES SUGERIDOS:
+   ---------------------
+   Hero:          #0A0520 → #1A0D42 → #0A0520
+   Primary:       #3206A4 → #6B2AE8
+   Cards:         #120931 → #0A0520
+   
+   ESTADOS (ambos temas):
+   ----------------------
+   Error:         #E74C3C (rojo)
+   Success:       #27AE60 / #2ECC71 (verde)
+   Warning:       #F39C12 / #F1C40F (amarillo)
+   
+   EFECTOS ESPECIALES:
+   -------------------
+   Glow/Shadow:   rgba(107, 42, 232, 0.3-0.6)
+   Hover Lift:    rgba(107, 42, 232, 0.4)
+   
+   ============================================ */

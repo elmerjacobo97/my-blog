@@ -1,0 +1,114 @@
+---
+title: 'Estructura rápida: Blog en Next.js con MDX'
+date: '2025-10-20'
+summary: 'Guía para usar MDX, rutas dinámicas y optimizar SEO en Next.js.'
+tags: ['Next.js', 'MDX', 'SEO']
+---
+
+## ¿Por qué MDX para tu blog?
+
+MDX te permite escribir JSX dentro de tus archivos Markdown, lo cual es perfecto para blogs técnicos donde necesitas componentes interactivos.
+
+```jsx
+// Puedes usar componentes React en tus posts!
+<CustomButton onClick={() => console.log('Click!')}>
+  Haz clic aquí
+</CustomButton>
+```
+
+## Instalación
+
+Primero, instala las dependencias necesarias:
+
+```bash
+pnpm add @next/mdx @mdx-js/loader @mdx-js/react @types/mdx
+pnpm add rehype-highlight rehype-slug rehype-autolink-headings
+pnpm add gray-matter reading-time
+```
+
+## Configuración de Next.js
+
+Actualiza tu `next.config.ts`:
+
+```typescript
+import createMDX from '@next/mdx';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
+
+const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+};
+
+const withMDX = createMDX({
+  options: {
+    rehypePlugins: [rehypeHighlight, rehypeSlug],
+  },
+});
+
+export default withMDX(nextConfig);
+```
+
+## Estructura de archivos
+
+Organiza tus posts así:
+
+```
+content/
+  blog/
+    mi-primer-post.mdx
+    segundo-post.mdx
+```
+
+Cada post debe tener frontmatter:
+
+```yaml
+---
+title: 'Mi Primer Post'
+date: '2025-01-15'
+summary: 'Descripción del post'
+tags: ['React', 'Next.js']
+---
+```
+
+## Rutas dinámicas
+
+Crea `app/blog/[slug]/page.tsx`:
+
+```typescript
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function Post({ params }) {
+  const post = getPostBySlug(params.slug);
+  return <MDXRemote source={post.content} />;
+}
+```
+
+## SEO Optimization
+
+No olvides agregar metadata:
+
+```typescript
+export async function generateMetadata({ params }) {
+  const post = getPostBySlug(params.slug);
+  return {
+    title: post.title,
+    description: post.summary,
+  };
+}
+```
+
+## Tips finales
+
+<Callout type="success" title="Checklist">
+1. Usa `reading-time` para mostrar tiempo de lectura
+2. Agrega `highlight.js` para syntax highlighting
+3. Implementa búsqueda con un simple `filter()`
+4. Considera usar `next-sitemap` para SEO
+</Callout>
+
+¡Y listo! Tienes un blog funcional con MDX.

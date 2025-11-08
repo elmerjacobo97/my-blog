@@ -1,7 +1,12 @@
-export default function Home() {
+import { getAllPosts } from '@/lib/posts';
+import { SearchClient } from '@/components/search-client';
+
+export default function BlogHome() {
+  const posts = getAllPosts();
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <h1 className="text-6xl font-black">My Blog</h1>
+    <div className="max-w-6xl mx-auto px-4 py-12">
+      <SearchClient posts={posts} />
     </div>
   );
 }

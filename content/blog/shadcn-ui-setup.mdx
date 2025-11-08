@@ -1,0 +1,120 @@
+---
+title: 'Configurando shadcn/ui en Next.js 16 con Tailwind 4'
+date: '2025-09-01'
+summary: 'Guía completa para integrar shadcn/ui con las últimas versiones de Next.js y Tailwind CSS.'
+tags: ['shadcn/ui', 'Next.js', 'Tailwind']
+---
+
+## ¿Qué es shadcn/ui?
+
+<Callout type="info" title="Importante">
+shadcn/ui NO es una librería de componentes tradicional. Es una colección de componentes reutilizables que puedes copiar y pegar en tu proyecto. Tienes control total sobre el código.
+</Callout>
+
+## Ventajas
+
+- ✅ Componentes accesibles (Radix UI)
+- ✅ Totalmente customizables
+- ✅ No agregas dependencias innecesarias
+- ✅ TypeScript por defecto
+- ✅ Compatible con Tailwind 4
+
+## Instalación
+
+### 1. Crear proyecto Next.js
+
+```bash
+pnpm create next-app@latest my-app --typescript --tailwind
+cd my-app
+```
+
+### 2. Inicializar shadcn/ui
+
+```bash
+pnpm dlx shadcn@latest init
+```
+
+Te preguntará por:
+- Estilo (New York o Default)
+- Color base
+- CSS variables (recomendado: sí)
+
+### 3. Agregar componentes
+
+```bash
+pnpm dlx shadcn@latest add button
+pnpm dlx shadcn@latest add card
+pnpm dlx shadcn@latest add input
+```
+
+Los componentes se copiarán a `components/ui/`.
+
+## Configuración con Tailwind 4
+
+Si usas Tailwind 4, asegúrate de tener esto en `globals.css`:
+
+```css
+@import 'tailwindcss';
+
+@theme inline {
+  --radius: 0.5rem;
+  /* Tus custom variables aquí */
+}
+```
+
+## Uso de componentes
+
+Importa y usa:
+
+```tsx
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+
+export default function Home() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Hola mundo</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button>Click me</Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+## Customización
+
+La belleza de shadcn/ui es que puedes editar directamente los componentes:
+
+```tsx
+// components/ui/button.tsx
+// Modifica las variantes, colores, etc.
+const buttonVariants = cva(
+  "base-classes",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary",
+        destructive: "bg-destructive",
+        // Agrega tus propias variantes!
+        purple: "bg-purple-600 hover:bg-purple-700",
+      },
+    },
+  }
+);
+```
+
+## Tips
+
+1. **No instales todos los componentes** - Solo agrega los que necesitas
+2. **Revisa el código** - Entiende cómo funcionan antes de usar
+3. **Customiza libremente** - Es tu código, cámbialo como quieras
+4. **Usa el CLI** - Siempre usa `pnpm dlx shadcn@latest add [component]`
+
+## Conclusión
+
+shadcn/ui es perfecto si quieres componentes de calidad sin perder control. Funciona genial con Next.js 16 y Tailwind 4.
+
+¿Ya lo probaste? ¿Qué te pareció?
