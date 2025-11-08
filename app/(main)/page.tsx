@@ -3,34 +3,25 @@ import { getAllPosts } from '@/lib/posts';
 import { SearchClient } from '@/components/search-client';
 
 export const metadata: Metadata = {
-  title: 'Blog - Elmer Jacobo | React Native & Desarrollo Web',
+  title: 'Blog - Elmer Jacobo | Full Stack Developer',
   description:
-    'Blog técnico con tutoriales, guías y soluciones sobre React Native, Expo, Next.js, TypeScript y desarrollo móvil multiplataforma. Aprende con ejemplos prácticos y casos reales.',
+    'Blog de desarrollo Full Stack. Tutoriales, guías y soluciones sobre React Native, Expo, Next.js, TypeScript, desarrollo móvil y web. Aprende con ejemplos prácticos y casos reales.',
   alternates: {
     canonical: 'https://blog.elmerjacobo.dev',
   },
   openGraph: {
-    title: 'Blog - Elmer Jacobo | React Native & Desarrollo Web',
-    description: 'Tutoriales y guías prácticas sobre React Native, Next.js, TypeScript y desarrollo web moderno',
+    title: 'Blog - Elmer Jacobo | Full Stack Developer',
+    description: 'Tutoriales y guías prácticas sobre desarrollo Full Stack, React Native, Next.js, TypeScript y desarrollo web moderno',
     url: 'https://blog.elmerjacobo.dev',
     siteName: 'Blog - Elmer Jacobo',
     locale: 'es_PE',
     type: 'website',
-    images: [
-      {
-        url: 'https://blog.elmerjacobo.dev/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Blog - Elmer Jacobo',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog - Elmer Jacobo | React Native & Desarrollo Web',
-    description: 'Tutoriales y guías sobre React Native, Next.js y desarrollo web',
+    title: 'Blog - Elmer Jacobo | Full Stack Developer',
+    description: 'Tutoriales y guías sobre desarrollo Full Stack, React Native, Next.js y desarrollo web',
     creator: '@elmerjacobo',
-    images: ['https://blog.elmerjacobo.dev/og-image.png'],
   },
 };
 
