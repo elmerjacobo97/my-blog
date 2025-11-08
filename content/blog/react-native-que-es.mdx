@@ -1,0 +1,248 @@
+---
+title: 'React Native: ¿Qué es y por qué usarlo?'
+date: '2025-09-08'
+summary: 'Descubre qué es React Native, cómo funciona y por qué es la mejor opción para desarrollar aplicaciones móviles multiplataforma con JavaScript y React.'
+tags: ['React Native', 'Mobile', 'JavaScript', 'React']
+---
+
+React Native es un framework de código abierto desarrollado por Meta (Facebook) que permite crear aplicaciones móviles nativas para iOS y Android utilizando **JavaScript y React**. En lugar de escribir código nativo en Swift/Objective-C para iOS o Java/Kotlin para Android, puedes escribir una sola base de código que funciona en ambas plataformas.
+
+## ¿Cómo funciona React Native?
+
+A diferencia de frameworks híbridos que renderizan HTML/CSS en un WebView, React Native compila tu código JavaScript a componentes nativos reales. Esto significa que tu aplicación **no es una web app disfrazada**, sino una aplicación nativa de verdad.
+
+```javascript
+import { View, Text, Button } from 'react-native';
+
+export default function App() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>¡Hola desde React Native!</Text>
+      <Button title="Presióname" onPress={() => alert('¡Funciona!')} />
+    </View>
+  );
+}
+```
+
+El código anterior se traduce a:
+
+- **iOS**: `UIView`, `UILabel`, `UIButton` (componentes nativos de UIKit)
+- **Android**: `View`, `TextView`, `Button` (componentes nativos de Android)
+
+<Callout type="info" title="JavaScript Bridge">
+  React Native usa un "bridge" (puente) para comunicar el código JavaScript con el código nativo. Tu lógica corre en un
+  thread de JavaScript, mientras que la UI se renderiza en el thread principal nativo.
+</Callout>
+
+## ¿Por qué usar React Native?
+
+### 1. **Una sola base de código**
+
+Escribe una vez, despliega en iOS y Android. Esto reduce drásticamente el tiempo de desarrollo y los costos de mantenimiento.
+
+```javascript
+// Este mismo código funciona en iOS y Android
+const SharedButton = () => (
+  <TouchableOpacity onPress={() => console.log('Tap!')}>
+    <Text>Presióname</Text>
+  </TouchableOpacity>
+);
+```
+
+### 2. **Rendimiento nativo**
+
+Como usa componentes nativos reales, el rendimiento es casi indistinguible de una app nativa escrita en Swift o Kotlin.
+
+### 3. **Ecosistema de React**
+
+Si ya conoces React, la curva de aprendizaje es mínima. Hooks, Context API, componentes funcionales... todo funciona igual.
+
+```javascript
+import { useState, useEffect } from 'react';
+import { Text } from 'react-native';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log('Count cambió:', count);
+  }, [count]);
+
+  return <Text onPress={() => setCount(count + 1)}>Contador: {count}</Text>;
+}
+```
+
+### 4. **Hot Reload**
+
+Guarda tu código y ve los cambios **instantáneamente** en tu dispositivo o emulador sin recompilar. Esto acelera enormemente el desarrollo.
+
+### 5. **Comunidad gigante**
+
+Miles de librerías, componentes preconstruidos y recursos:
+
+- **React Navigation** para navegación
+- **React Native Paper** para Material Design
+- **Expo** para desarrollo rápido
+- **NativeBase** para componentes UI
+
+### 6. **Acceso a APIs nativas**
+
+Puedes acceder a funcionalidades nativas del dispositivo:
+
+```javascript
+import { Camera } from 'expo-camera';
+import * as Location from 'expo-location';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// Acceso a cámara
+const { status } = await Camera.requestCameraPermissionsAsync();
+
+// Geolocalización
+const location = await Location.getCurrentPositionAsync({});
+
+// Almacenamiento local
+await AsyncStorage.setItem('user', JSON.stringify(userData));
+```
+
+## ¿Cuándo NO usar React Native?
+
+<Callout type="warning" title="Considera alternativas si...">
+  - Necesitas acceso intensivo a hardware específico (AR/VR complejo, procesamiento gráfico pesado) - Tienes requisitos
+  de rendimiento extremo (juegos 3D complejos) - Tu app requiere APIs muy específicas de iOS/Android que no tienen
+  bindings en RN
+</Callout>
+
+En esos casos, considera desarrollo nativo puro (Swift/Kotlin) o frameworks especializados como Unity para juegos.
+
+## React Native vs Alternativas
+
+| Framework                 | Lenguaje              | Rendimiento | Curva de aprendizaje   |
+| ------------------------- | --------------------- | ----------- | ---------------------- |
+| **React Native**          | JavaScript/TypeScript | ⭐⭐⭐⭐    | Fácil (si sabes React) |
+| **Flutter**               | Dart                  | ⭐⭐⭐⭐⭐  | Media                  |
+| **Ionic**                 | JavaScript/HTML/CSS   | ⭐⭐⭐      | Fácil                  |
+| **Nativo (Swift/Kotlin)** | Swift/Kotlin          | ⭐⭐⭐⭐⭐  | Alta                   |
+
+## Expo vs React Native CLI
+
+Hay dos formas principales de empezar con React Native:
+
+### Expo (Recomendado para empezar)
+
+```bash
+npx create-expo-app mi-app
+cd mi-app
+npx expo start
+```
+
+**Pros:**
+
+- Setup súper rápido
+- No necesitas Xcode/Android Studio inicialmente
+- Incluye muchas APIs listas para usar
+
+**Contras:**
+
+- Tamaño de app más grande
+- Limitado a módulos nativos que Expo incluye
+
+### React Native CLI
+
+```bash
+npx @react-native-community/cli@latest init MiApp
+cd MiApp
+npm run android  # o npm run ios
+```
+
+**Pros:**
+
+- Control total
+- Puedes agregar cualquier módulo nativo
+- Apps más pequeñas
+
+**Contras:**
+
+- Requiere configurar Xcode y Android Studio
+- Setup más complejo
+
+<Callout type="success" title="Mi recomendación">
+  Empieza con Expo. Cuando necesites módulos nativos personalizados, migra a React Native CLI o usa "prebuild" de Expo
+  para tener lo mejor de ambos mundos.
+</Callout>
+
+## Ejemplo: App completa básica
+
+```javascript
+import { useState } from 'react';
+import { View, Text, TextInput, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+
+export default function TodoApp() {
+  const [task, setTask] = useState('');
+  const [tasks, setTasks] = useState([]);
+
+  const addTask = () => {
+    if (task.trim()) {
+      setTasks([...tasks, { id: Date.now(), text: task }]);
+      setTask('');
+    }
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((t) => t.id !== id));
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Mis Tareas</Text>
+
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.input} value={task} onChangeText={setTask} placeholder="Nueva tarea..." />
+        <TouchableOpacity style={styles.button} onPress={addTask}>
+          <Text style={styles.buttonText}>Agregar</Text>
+        </TouchableOpacity>
+      </View>
+
+      <FlatList
+        data={tasks}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.task} onPress={() => deleteTask(item.id)}>
+            <Text style={styles.taskText}>{item.text}</Text>
+          </TouchableOpacity>
+        )}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 20, backgroundColor: '#fff' },
+  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
+  inputContainer: { flexDirection: 'row', marginBottom: 20 },
+  input: { flex: 1, borderWidth: 1, borderColor: '#ddd', padding: 10, borderRadius: 5 },
+  button: { backgroundColor: '#007AFF', padding: 10, borderRadius: 5, marginLeft: 10 },
+  buttonText: { color: '#fff', fontWeight: 'bold' },
+  task: { padding: 15, backgroundColor: '#f0f0f0', borderRadius: 5, marginBottom: 10 },
+  taskText: { fontSize: 16 },
+});
+```
+
+## Conclusión
+
+React Native es una excelente opción si:
+
+- ✅ Ya conoces JavaScript/React
+- ✅ Quieres desarrollar para iOS y Android rápidamente
+- ✅ Necesitas rendimiento nativo (no WebView)
+- ✅ Valoras el Hot Reload y el ecosistema de React
+
+Empresas como **Instagram, Discord, Shopify, Pinterest, Uber Eats** y muchas más usan React Native en producción con millones de usuarios.
+
+## Recursos para aprender
+
+- [Documentación oficial](https://reactnative.dev)
+- [Expo Docs](https://docs.expo.dev)
+- [React Native Directory](https://reactnative.directory) - Catálogo de librerías
+- [React Navigation](https://reactnavigation.org) - Navegación
+
+¿Listo para crear tu primera app móvil con React Native? ¡Es más fácil de lo que piensas! 🚀

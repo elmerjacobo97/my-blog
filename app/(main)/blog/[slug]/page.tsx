@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Calendar, Clock, Eye } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -10,6 +10,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkGfm from 'remark-gfm';
 import { Callout } from '@/components/mdx/callout';
 import { PostReactions } from '@/components/post-reactions';
 import { Comments } from '@/components/comments';
@@ -80,18 +81,44 @@ const components = {
   code: (props: React.HTMLAttributes<HTMLElement>) => {
     const hasClassName = 'className' in props && props.className;
     if (hasClassName) {
-      return <code className="block bg-card border rounded-lg p-4 overflow-x-auto text-sm font-mono mb-4" {...props} />;
+      return <code className="block bg-card border rounded-lg p-4 overflow-x-auto text-sm font-mono mb-4 max-w-full" {...props} />;
     }
-    return <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono" {...props} />;
+    return <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono break-words" {...props} />;
   },
   pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre className="bg-card border rounded-lg p-4 overflow-x-auto mb-6" {...props} />
+    <pre className="bg-card border rounded-lg p-4 overflow-x-auto mb-6 max-w-full -mx-4 md:mx-0" {...props} />
   ),
   blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote className="border-l-4 border-primary pl-4 italic my-6 text-muted-foreground" {...props} />
   ),
-  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-    <a className="text-primary hover:underline font-medium" {...props} />
+  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+    const isExternal = props.href?.startsWith('http');
+    return (
+      <a
+        className="text-primary hover:underline font-medium"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        {...props}
+      />
+    );
+  },
+  table: (props: React.HTMLAttributes<HTMLTableElement>) => (
+    <div className="my-6 w-full overflow-x-auto">
+      <table className="w-full border-collapse border border-border" {...props} />
+    </div>
+  ),
+  thead: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <thead className="bg-muted" {...props} />
+  ),
+  tbody: (props: React.HTMLAttributes<HTMLTableSectionElement>) => <tbody {...props} />,
+  tr: (props: React.HTMLAttributes<HTMLTableRowElement>) => (
+    <tr className="border-b border-border" {...props} />
+  ),
+  th: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <th className="px-4 py-3 text-left font-semibold text-sm" {...props} />
+  ),
+  td: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <td className="px-4 py-3 text-sm" {...props} />
   ),
   Callout,
 };
@@ -113,8 +140,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const postUrl = `https://blog.elmerjacobo.dev/blog/${slug}`;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      <article>
+    <div className="max-w-4xl mx-auto px-4 py-12 overflow-x-hidden">
+      <article className="overflow-x-hidden">
         {/* Header */}
         <header className="mb-8">
           <Link href="/">
@@ -133,10 +160,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
               <span>{post.readingTime}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Eye className="w-4 h-4" />
-              <span>Vistas: --</span>
             </div>
           </div>
 
@@ -166,6 +189,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             components={components}
             options={{
               mdxOptions: {
+                remarkPlugins: [remarkGfm],
                 rehypePlugins: [rehypeHighlight, rehypeSlug, rehypeAutolinkHeadings],
               },
             }}

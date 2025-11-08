@@ -1,0 +1,421 @@
+---
+title: 'Diferencias entre App Router y Pages Router en Next.js'
+date: '2025-11-08'
+summary: 'Guía completa sobre las diferencias entre App Router (app/) y Pages Router (pages/) en Next.js. Cuál usar, cuándo migrar y ejemplos prácticos.'
+tags: ['Next.js', 'React', 'App Router', 'TypeScript']
+---
+
+Next.js 13 introdujo el **App Router** (`app/` directory), un cambio fundamental en cómo estructuramos aplicaciones Next.js. Pero el **Pages Router** (`pages/` directory) sigue siendo totalmente válido y soportado. ¿Cuál usar? ¿Vale la pena migrar? Te lo explico todo.
+
+## Tabla Comparativa Rápida
+
+| Característica     | Pages Router (`pages/`)                | App Router (`app/`)         |
+| ------------------ | -------------------------------------- | --------------------------- |
+| **Lanzamiento**    | Next.js 9 (2019)                       | Next.js 13 (2022)           |
+| **Estado**         | Estable, mantenido                     | Estable desde Next.js 14    |
+| **Componentes**    | Solo Client Components                 | Server + Client Components  |
+| **Layouts**        | `_app.js` + `_document.js`             | Layouts anidados nativos    |
+| **Data Fetching**  | `getServerSideProps`, `getStaticProps` | `async` components, `fetch` |
+| **Loading States** | Manual                                 | `loading.js` automático     |
+| **Error Handling** | `_error.js` global                     | `error.js` por ruta         |
+| **Streaming**      | No                                     | Sí (RSC + Suspense)         |
+
+## Pages Router: El Clásico
+
+### Estructura de archivos
+
+```
+pages/
+├── _app.js          # Layout global
+├── _document.js     # HTML document
+├── index.js         # → /
+├── about.js         # → /about
+├── blog/
+│   ├── index.js     # → /blog
+│   └── [slug].js    # → /blog/post-1
+└── api/
+    └── hello.js     # → /api/hello
+```
+
+### Ejemplo: Página con Data Fetching
+
+```javascript
+// pages/blog/[slug].js
+export default function BlogPost({ post }) {
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+    </div>
+  );
+}
+
+// Server-side rendering
+export async function getServerSideProps({ params }) {
+  const post = await fetch(`https://api.com/posts/${params.slug}`).then((r) => r.json());
+  return { props: { post } };
+}
+
+// O Static Generation
+export async function getStaticProps({ params }) {
+  const post = await fetch(`https://api.com/posts/${params.slug}`).then((r) => r.json());
+  return { props: { post } };
+}
+
+export async function getStaticPaths() {
+  const posts = await fetch('https://api.com/posts').then((r) => r.json());
+  return {
+    paths: posts.map((p) => ({ params: { slug: p.slug } })),
+    fallback: false,
+  };
+}
+```
+
+<Callout type="info" title="Todo es Client Component">
+  En Pages Router, **todos los componentes son Client Components** por defecto. El código corre en el cliente después de
+  la hidratación.
+</Callout>
+
+### Layout Global con `_app.js`
+
+```javascript
+// pages/_app.js
+import '../styles/globals.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+export default function App({ Component, pageProps }) {
+  return (
+    <>
+      <Navbar />
+      <Component {...pageProps} />
+      <Footer />
+    </>
+  );
+}
+```
+
+**Problema:** Solo hay un layout global. Si quieres layouts diferentes por sección (blog vs dashboard), necesitas lógica condicional.
+
+## App Router: La Nueva Era
+
+### Estructura de archivos
+
+```
+app/
+├── layout.js        # Root layout
+├── page.js          # → /
+├── loading.js       # Loading UI
+├── error.js         # Error handling
+├── about/
+│   └── page.js      # → /about
+├── blog/
+│   ├── layout.js    # Layout solo para /blog/*
+│   ├── page.js      # → /blog
+│   └── [slug]/
+│       ├── page.js  # → /blog/post-1
+│       └── loading.js
+└── api/
+    └── hello/
+        └── route.js # → /api/hello
+```
+
+### Server Components por Defecto
+
+```javascript
+// app/blog/[slug]/page.js
+// Este es un SERVER COMPONENT (corre en el servidor)
+export default async function BlogPost({ params }) {
+  const { slug } = await params;
+
+  // Fetch directo en el componente, sin getServerSideProps
+  const post = await fetch(`https://api.com/posts/${slug}`, {
+    next: { revalidate: 60 }, // ISR automático
+  }).then((r) => r.json());
+
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+    </div>
+  );
+}
+
+// generateStaticParams reemplaza getStaticPaths
+export async function generateStaticParams() {
+  const posts = await fetch('https://api.com/posts').then((r) => r.json());
+  return posts.map((p) => ({ slug: p.slug }));
+}
+```
+
+<Callout type="success" title="¡Fetch directo en el componente!">
+  No más `getServerSideProps` ni `getStaticProps`. Los Server Components pueden hacer fetch directamente, y Next.js lo
+  optimiza automáticamente.
+</Callout>
+
+### Layouts Anidados
+
+```javascript
+// app/layout.js (root)
+export default function RootLayout({ children }) {
+  return (
+    <html lang="es">
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
+    </html>
+  );
+}
+
+// app/blog/layout.js (solo para /blog/*)
+export default function BlogLayout({ children }) {
+  return (
+    <div className="blog-container">
+      <aside>
+        <h3>Artículos Recientes</h3>
+        {/* Sidebar */}
+      </aside>
+      <main>{children}</main>
+    </div>
+  );
+}
+```
+
+**Ventaja:** Cada sección puede tener su propio layout, y se anidan automáticamente.
+
+### Loading States Automáticos
+
+```javascript
+// app/blog/loading.js
+export default function Loading() {
+  return (
+    <div className="spinner">
+      <p>Cargando artículos...</p>
+    </div>
+  );
+}
+```
+
+Next.js muestra este componente automáticamente mientras `page.js` hace fetch de datos. ¡Sin boilerplate!
+
+### Error Handling por Ruta
+
+```javascript
+// app/blog/error.js
+'use client'; // Error boundaries deben ser Client Components
+
+export default function Error({ error, reset }) {
+  return (
+    <div>
+      <h2>Algo salió mal!</h2>
+      <p>{error.message}</p>
+      <button onClick={reset}>Reintentar</button>
+    </div>
+  );
+}
+```
+
+Cada ruta puede tener su propio manejo de errores. No más `_error.js` global.
+
+## Client Components en App Router
+
+Si necesitas interactividad (hooks, eventos, etc.), usa `'use client'`:
+
+```javascript
+// app/components/Counter.js
+'use client';
+
+import { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return <button onClick={() => setCount(count + 1)}>Clicks: {count}</button>;
+}
+```
+
+<Callout type="warning" title="Cuándo usar 'use client'">
+  - Cuando usas hooks (`useState`, `useEffect`, etc.) - Cuando manejas eventos (`onClick`, `onChange`, etc.) - Cuando
+  usas APIs del navegador (`window`, `localStorage`, etc.) - Cuando usas librerías que dependen del cliente
+</Callout>
+
+## Data Fetching: Comparación
+
+### Pages Router
+
+```javascript
+// SSR
+export async function getServerSideProps() {
+  const data = await fetch('https://api.com/data');
+  return { props: { data } };
+}
+
+// SSG
+export async function getStaticProps() {
+  const data = await fetch('https://api.com/data');
+  return { props: { data }, revalidate: 60 }; // ISR
+}
+```
+
+### App Router
+
+```javascript
+// SSR (por defecto)
+async function getData() {
+  const res = await fetch('https://api.com/data', { cache: 'no-store' });
+  return res.json();
+}
+
+export default async function Page() {
+  const data = await getData();
+  return <div>{data.title}</div>;
+}
+
+// SSG
+async function getData() {
+  const res = await fetch('https://api.com/data', { cache: 'force-cache' });
+  return res.json();
+}
+
+// ISR (Incremental Static Regeneration)
+async function getData() {
+  const res = await fetch('https://api.com/data', {
+    next: { revalidate: 60 }, // Revalida cada 60 segundos
+  });
+  return res.json();
+}
+```
+
+## Streaming y Suspense
+
+App Router soporta **React Server Components + Suspense**, permitiendo streaming:
+
+```javascript
+// app/dashboard/page.js
+import { Suspense } from 'react';
+
+async function SlowComponent() {
+  const data = await fetch('https://slow-api.com/data');
+  return <div>{/* renderiza data */}</div>;
+}
+
+export default function Dashboard() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      {/* Esto se renderiza inmediatamente */}
+      <FastContent />
+
+      {/* Esto hace streaming cuando está listo */}
+      <Suspense fallback={<Skeleton />}>
+        <SlowComponent />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+El HTML inicial se envía de inmediato, y los componentes lentos hacen "streaming" cuando están listos. ¡Mejor UX!
+
+## Metadata API
+
+### Pages Router
+
+```javascript
+// pages/blog/[slug].js
+import Head from 'next/head';
+
+export default function Post({ post }) {
+  return (
+    <>
+      <Head>
+        <title>{post.title} | Mi Blog</title>
+        <meta name="description" content={post.summary} />
+      </Head>
+      <article>{/* contenido */}</article>
+    </>
+  );
+}
+```
+
+### App Router
+
+```javascript
+// app/blog/[slug]/page.js
+export async function generateMetadata({ params }) {
+  const post = await fetch(`https://api.com/posts/${params.slug}`).then((r) => r.json());
+
+  return {
+    title: `${post.title} | Mi Blog`,
+    description: post.summary,
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      images: [post.image],
+    },
+  };
+}
+
+export default function Post({ params }) {
+  // ...
+}
+```
+
+Mucho más limpio y con type safety.
+
+## ¿Cuál Usar?
+
+### Usa **Pages Router** si:
+
+- ✅ Tienes un proyecto existente que funciona bien
+- ✅ Tu equipo no está familiarizado con Server Components
+- ✅ Usas librerías que no son compatibles con RSC aún
+- ✅ Necesitas estabilidad probada en producción (aunque App Router ya es estable)
+
+### Usa **App Router** si:
+
+- ✅ Empiezas un proyecto nuevo
+- ✅ Quieres mejor rendimiento (Server Components reducen JavaScript)
+- ✅ Necesitas layouts complejos y anidados
+- ✅ Quieres streaming y loading states automáticos
+- ✅ Valoras DX moderna (fetch directo, metadata API, etc.)
+
+<Callout type="success" title="Mi recomendación">
+**Proyectos nuevos → App Router**. Es el futuro de Next.js y tiene mejor DX.
+
+**Proyectos existentes → Pages Router** hasta que tengas una razón específica para migrar (nueva funcionalidad, refactor mayor, etc.). No migres solo por migrar.
+
+</Callout>
+
+## Migración Gradual
+
+¡Buenas noticias! Puedes usar **ambos al mismo tiempo**:
+
+```
+mi-app/
+├── app/
+│   └── dashboard/    # Nuevas rutas en App Router
+│       └── page.js
+└── pages/
+    ├── index.js      # Rutas existentes en Pages Router
+    └── about.js
+```
+
+Next.js prioriza `app/` sobre `pages/` si ambos definen la misma ruta.
+
+## Conclusión
+
+- **Pages Router**: Maduro, estable, familiar. Perfecto para proyectos existentes.
+- **App Router**: Moderno, eficiente, con mejor DX. Ideal para proyectos nuevos.
+
+Ambos están soportados y no hay prisa por migrar. Pero si empiezas algo nuevo, App Router te dará ventajas significativas en rendimiento y experiencia de desarrollo.
+
+¿Listo para el futuro de Next.js? 🚀
+
+## Recursos
+
+- [Next.js App Router Docs](https://nextjs.org/docs/app)
+- [Migrating from Pages to App](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration)
+- [React Server Components](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components)

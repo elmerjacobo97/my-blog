@@ -1,6 +1,6 @@
 ---
 title: 'Estructura rápida: Blog en Next.js con MDX'
-date: '2025-10-20'
+date: '2025-09-10'
 summary: 'Guía para usar MDX, rutas dinámicas y optimizar SEO en Next.js.'
 tags: ['Next.js', 'MDX', 'SEO']
 ---
@@ -11,9 +11,7 @@ MDX te permite escribir JSX dentro de tus archivos Markdown, lo cual es perfecto
 
 ```jsx
 // Puedes usar componentes React en tus posts!
-<CustomButton onClick={() => console.log('Click!')}>
-  Haz clic aquí
-</CustomButton>
+<CustomButton onClick={() => console.log('Click!')}>Haz clic aquí</CustomButton>
 ```
 
 ## Instalación
@@ -105,10 +103,8 @@ export async function generateMetadata({ params }) {
 ## Tips finales
 
 <Callout type="success" title="Checklist">
-1. Usa `reading-time` para mostrar tiempo de lectura
-2. Agrega `highlight.js` para syntax highlighting
-3. Implementa búsqueda con un simple `filter()`
-4. Considera usar `next-sitemap` para SEO
+  1. Usa `reading-time` para mostrar tiempo de lectura 2. Agrega `highlight.js` para syntax highlighting 3. Implementa
+  búsqueda con un simple `filter()` 4. Considera usar `next-sitemap` para SEO
 </Callout>
 
 ¡Y listo! Tienes un blog funcional con MDX.

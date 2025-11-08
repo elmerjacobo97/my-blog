@@ -1,6 +1,6 @@
 ---
 title: 'Configurando shadcn/ui en Next.js 16 con Tailwind 4'
-date: '2025-09-01'
+date: '2025-10-01'
 summary: 'Guía completa para integrar shadcn/ui con las últimas versiones de Next.js y Tailwind CSS.'
 tags: ['shadcn/ui', 'Next.js', 'Tailwind']
 ---
@@ -8,7 +8,8 @@ tags: ['shadcn/ui', 'Next.js', 'Tailwind']
 ## ¿Qué es shadcn/ui?
 
 <Callout type="info" title="Importante">
-shadcn/ui NO es una librería de componentes tradicional. Es una colección de componentes reutilizables que puedes copiar y pegar en tu proyecto. Tienes control total sobre el código.
+  shadcn/ui NO es una librería de componentes tradicional. Es una colección de componentes reutilizables que puedes
+  copiar y pegar en tu proyecto. Tienes control total sobre el código.
 </Callout>
 
 ## Ventajas
@@ -35,6 +36,7 @@ pnpm dlx shadcn@latest init
 ```
 
 Te preguntará por:
+
 - Estilo (New York o Default)
 - Color base
 - CSS variables (recomendado: sí)
@@ -91,19 +93,16 @@ La belleza de shadcn/ui es que puedes editar directamente los componentes:
 ```tsx
 // components/ui/button.tsx
 // Modifica las variantes, colores, etc.
-const buttonVariants = cva(
-  "base-classes",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary",
-        destructive: "bg-destructive",
-        // Agrega tus propias variantes!
-        purple: "bg-purple-600 hover:bg-purple-700",
-      },
+const buttonVariants = cva('base-classes', {
+  variants: {
+    variant: {
+      default: 'bg-primary',
+      destructive: 'bg-destructive',
+      // Agrega tus propias variantes!
+      purple: 'bg-purple-600 hover:bg-purple-700',
     },
-  }
-);
+  },
+});
 ```
 
 ## Tips

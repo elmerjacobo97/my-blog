@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu, Home, User, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ModeToggle } from '@/components/mode-toggle';
 import {
   Sheet,
   SheetContent,
@@ -13,6 +15,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Inicio', icon: Home },
@@ -22,39 +25,54 @@ const navLinks = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
+          {/* Logo */}
           <Link href="/" className="text-xl font-bold gradient-primary bg-clip-text text-transparent">
             Blog — Elmer Jacobo
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              link.external ? (
+          {/* Desktop Navigation - Center */}
+          <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+            {navLinks.map((link) => {
+              const Icon = link.icon;
+              const isActive = pathname === link.href;
+              return link.external ? (
                 <a
                   key={link.href}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-primary hover:bg-accent transition-colors"
                 >
+                  <Icon className="h-4 w-4" />
                   {link.label}
                 </a>
               ) : (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  className={cn(
+                    "flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors",
+                    isActive
+                      ? "text-primary bg-accent font-medium"
+                      : "text-muted-foreground hover:text-primary hover:bg-accent"
+                  )}
                 >
+                  <Icon className="h-4 w-4" />
                   {link.label}
                 </Link>
-              )
-            ))}
+              );
+            })}
           </nav>
+
+          {/* Right side - Theme Toggle + Mobile Menu */}
+          <div className="flex items-center gap-2">
+            <ModeToggle />
 
           {/* Mobile Navigation */}
           <Sheet open={open} onOpenChange={setOpen}>
@@ -73,6 +91,7 @@ export function Header() {
               <nav className="flex flex-col gap-2">
                 {navLinks.map((link) => {
                   const Icon = link.icon;
+                  const isActive = pathname === link.href;
                   return link.external ? (
                     <a
                       key={link.href}
@@ -89,7 +108,12 @@ export function Header() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-accent transition-colors"
+                      className={cn(
+                        "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
+                        isActive
+                          ? "text-primary bg-accent font-medium"
+                          : "text-muted-foreground hover:text-primary hover:bg-accent"
+                      )}
                       onClick={() => setOpen(false)}
                     >
                       <Icon className="h-5 w-5" />
@@ -100,6 +124,7 @@ export function Header() {
               </nav>
             </SheetContent>
           </Sheet>
+          </div>
         </div>
       </div>
     </header>

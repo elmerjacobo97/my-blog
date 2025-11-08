@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { Search, ArrowRight, X } from 'lucide-react';
+import { Search, ArrowRight, CircleXIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -55,6 +55,7 @@ function PostCard({ post }: { post: PostData }) {
 
 export function SearchClient({ posts }: SearchClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Filtrar posts por búsqueda
   const filteredPosts = posts.filter((post) => {
@@ -74,27 +75,35 @@ export function SearchClient({ posts }: SearchClientProps) {
       {/* Header */}
       <header className="mb-12 ">
         <div className="mb-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">Blog Técnico</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">Blog de Desarrollo</h1>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            Artículos sobre desarrollo web, deploys, debugging y buenas prácticas. Comparto lo que aprendo construyendo
-            apps con React, Next.js y TypeScript.
+            Artículos sobre desarrollo web y móvil. Especializado en React Native, Next.js, TypeScript y buenas
+            prácticas. Comparto lo que aprendo construyendo aplicaciones multiplataforma.
           </p>
         </div>
 
         {/* Search */}
-        <div className="flex items-center gap-2 max-w-md">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <div className="max-w-md">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             <Input
+              ref={inputRef}
               placeholder="Buscar artículos..."
-              className="pl-10"
+              className="pl-10 pe-9"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
             {searchQuery && (
-              <Button variant="ghost" size="sm" className="absolute" onClick={() => setSearchQuery('')}>
-                <X className="w-4 h-4" />
-              </Button>
+              <button
+                className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md text-muted-foreground/80 transition-[color,box-shadow] outline-none hover:text-foreground focus:z-10 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                aria-label="Limpiar búsqueda"
+                onClick={() => {
+                  setSearchQuery('');
+                  inputRef.current?.focus();
+                }}
+              >
+                <CircleXIcon size={16} aria-hidden="true" />
+              </button>
             )}
           </div>
         </div>

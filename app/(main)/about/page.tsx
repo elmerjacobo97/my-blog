@@ -16,7 +16,7 @@ export default function AboutPage() {
       {/* Header */}
       <header className="mb-12 animate-fade-in">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Sobre mí</h1>
-        <p className="text-xl text-muted-foreground leading-relaxed">
+        <p className="text-xl leading-relaxed">
           Hola! Soy Elmer, desarrollador full-stack con pasión por construir aplicaciones web modernas y compartir lo
           que aprendo en el camino.
         </p>
@@ -32,11 +32,11 @@ export default function AboutPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="leading-relaxed">
               Soy desarrollador web especializado en el ecosistema de React y Next.js. Me encanta trabajar en proyectos
               que combinan buen diseño con código limpio y escalable.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="leading-relaxed">
               Actualmente trabajo construyendo aplicaciones web full-stack, desde la arquitectura del backend hasta
               interfaces de usuario intuitivas. También dedico tiempo a crear contenido técnico para ayudar a otros
               desarrolladores.
@@ -53,11 +53,11 @@ export default function AboutPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="leading-relaxed">
               Este blog nació de mi necesidad de documentar soluciones a problemas que enfrento día a día. He aprendido
               muchísimo de blogs de otros desarrolladores, y quiero devolver esa ayuda a la comunidad.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="leading-relaxed">
               Aquí comparto guías prácticas, soluciones a bugs complejos, configuraciones que me funcionan y reflexiones
               sobre desarrollo web. Mi objetivo es que si alguien enfrenta el mismo problema que yo, pueda encontrar la
               solución aquí.
@@ -78,7 +78,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="font-semibold mb-3">Frontend</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'shadcn/ui'].map((tech) => (
+                  {['React', 'React Native', 'Next.js', 'TypeScript', 'Tailwind CSS', 'shadcn/ui'].map((tech) => (
                     <Badge key={tech}>{tech}</Badge>
                   ))}
                 </div>
@@ -86,7 +86,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="font-semibold mb-3">Backend & Tools</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['Node.js', 'PostgreSQL', 'Vercel', 'Git', 'VS Code'].map((tech) => (
+                  {['Node.js', 'Laravel', 'PostgreSQL', 'Vercel', 'Git', 'VS Code'].map((tech) => (
                     <Badge key={tech}>{tech}</Badge>
                   ))}
                 </div>
@@ -101,7 +101,7 @@ export default function AboutPage() {
             <CardTitle>¿Sobre qué escribo?</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-y-2 text-muted-foreground">
+            <ul className="space-y-2">
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1">•</span>
                 <span>Guías paso a paso para configurar herramientas y frameworks</span>
@@ -131,7 +131,7 @@ export default function AboutPage() {
         {/* Contact */}
         <div className="text-center space-y-6">
           <h2 className="text-2xl font-bold">Conectemos</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto">
             Si tienes preguntas, comentarios sobre algún artículo, o simplemente quieres charlar sobre desarrollo web,
             no dudes en contactarme.
           </p>
