@@ -16,12 +16,21 @@ export const metadata: Metadata = {
     siteName: 'Blog - Elmer Jacobo',
     locale: 'es_PE',
     type: 'website',
+    images: [
+      {
+        url: 'https://blog.elmerjacobo.dev/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Blog - Elmer Jacobo | Full Stack Developer',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Blog - Elmer Jacobo | Full Stack Developer',
     description: 'Tutoriales y guías sobre desarrollo Full Stack, React Native, Next.js y desarrollo web',
     creator: '@elmerjacobo',
+    images: ['https://blog.elmerjacobo.dev/opengraph-image'],
   },
 };
 

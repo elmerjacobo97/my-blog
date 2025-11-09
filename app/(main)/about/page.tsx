@@ -18,12 +18,21 @@ export const metadata = {
     siteName: 'Blog - Elmer Jacobo',
     locale: 'es_PE',
     type: 'website',
+    images: [
+      {
+        url: 'https://blog.elmerjacobo.dev/about/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Sobre mí - Elmer Jacobo',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Sobre mí - Elmer Jacobo',
     description: 'Desarrollador full-stack apasionado por compartir conocimiento',
     creator: '@elmerjacobo',
+    images: ['https://blog.elmerjacobo.dev/about/opengraph-image'],
   },
 };
 

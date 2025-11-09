@@ -53,12 +53,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       modifiedTime: post.date,
       authors: ['Elmer Jacobo'],
       tags: post.tags,
+      images: [
+        {
+          url: `https://blog.elmerjacobo.dev/blog/${slug}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.summary,
       creator: '@elmerjacobo',
+      images: [`https://blog.elmerjacobo.dev/blog/${slug}/opengraph-image`],
     },
   };
 }
