@@ -10,62 +10,129 @@ export const contentType = 'image/png';
 export default async function Image() {
   return new ImageResponse(
     (
-      <div tw="flex w-full h-full" style={{ backgroundColor: '#0A0520' }}>
-        <div tw="flex flex-col w-full" style={{ padding: '60px 70px' }}>
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          height: '100%',
+          backgroundColor: '#0A0520',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            padding: '60px 70px',
+          }}
+        >
           {/* Top gradient border */}
           <div
-            tw="flex w-full mb-12"
             style={{
+              display: 'flex',
+              width: '100%',
               height: 4,
               background: 'linear-gradient(90deg, #3206A4 0%, #6B2AE8 100%)',
+              marginBottom: 48,
             }}
           />
 
           {/* Badge */}
-          <div tw="flex justify-center mb-10">
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 40 }}>
             <div
-              tw="flex items-center px-6 py-3 rounded-full"
               style={{
+                display: 'flex',
+                alignItems: 'center',
                 gap: 12,
+                padding: '12px 24px',
                 backgroundColor: 'rgba(107, 42, 232, 0.1)',
                 border: '1px solid rgba(107, 42, 232, 0.3)',
+                borderRadius: 50,
               }}
             >
               <div
-                tw="flex rounded-full"
                 style={{
+                  display: 'flex',
                   width: 8,
                   height: 8,
+                  borderRadius: '50%',
                   background: 'linear-gradient(135deg, #3206A4 0%, #6B2AE8 100%)',
                 }}
               />
-              <div tw="flex text-lg font-bold tracking-widest" style={{ color: '#A78BFA' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  fontSize: 18,
+                  fontWeight: 700,
+                  color: '#A78BFA',
+                  letterSpacing: '0.1em',
+                }}
+              >
                 FULL STACK DEVELOPER
               </div>
             </div>
           </div>
 
           {/* Main content */}
-          <div tw="flex flex-col flex-1 items-center text-center">
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 1,
+              alignItems: 'center',
+              textAlign: 'center',
+            }}
+          >
             {/* Title */}
-            <div tw="flex text-8xl font-black text-white mb-6 leading-none tracking-tight">Elmer Jacobo</div>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 80,
+                fontWeight: 900,
+                color: '#FAFAFA',
+                marginBottom: 24,
+                lineHeight: 1,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Elmer Jacobo
+            </div>
 
             {/* Subtitle */}
-            <div tw="flex text-3xl mb-10" style={{ color: '#A1A1AA', maxWidth: 800 }}>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 28,
+                color: '#A1A1AA',
+                marginBottom: 40,
+                maxWidth: 800,
+              }}
+            >
               Blog sobre desarrollo web, móvil y buenas prácticas
             </div>
 
             {/* Tech stack */}
-            <div tw="flex flex-wrap justify-center" style={{ maxWidth: 700 }}>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                maxWidth: 700,
+              }}
+            >
               {['React Native', 'Expo', 'Next.js', 'TypeScript', 'Node.js'].map((tech) => (
                 <div
                   key={tech}
-                  tw="flex px-5 py-2 rounded-2xl text-lg font-medium"
                   style={{
+                    display: 'flex',
+                    padding: '8px 18px',
                     margin: 6,
                     backgroundColor: 'rgba(107, 42, 232, 0.12)',
                     border: '1px solid rgba(107, 42, 232, 0.3)',
+                    borderRadius: 20,
+                    fontSize: 17,
                     color: '#A78BFA',
+                    fontWeight: 500,
                   }}
                 >
                   {tech}
@@ -75,8 +142,15 @@ export default async function Image() {
           </div>
 
           {/* Footer */}
-          <div tw="flex justify-center pt-6" style={{ borderTop: '1px solid rgba(107, 42, 232, 0.2)' }}>
-            <div tw="flex text-xl font-semibold" style={{ color: '#6B2AE8' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              paddingTop: 24,
+              borderTop: '1px solid rgba(107, 42, 232, 0.2)',
+            }}
+          >
+            <div style={{ display: 'flex', fontSize: 20, color: '#6B2AE8', fontWeight: 600 }}>
               blog.elmerjacobo.dev
             </div>
           </div>

@@ -15,10 +15,17 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   if (!post) {
     return new ImageResponse(
       (
-        <div tw="flex w-full h-full items-center justify-center" style={{ backgroundColor: '#0A0520' }}>
-          <div tw="flex text-5xl" style={{ color: '#F5F5F8' }}>
-            Post no encontrado
-          </div>
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#0A0520',
+          }}
+        >
+          <div style={{ display: 'flex', fontSize: 48, color: '#F5F5F8' }}>Post no encontrado</div>
         </div>
       ),
       { ...size }
@@ -37,38 +44,90 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   return new ImageResponse(
     (
-      <div tw="flex w-full h-full" style={{ backgroundColor: '#0A0520' }}>
-        <div tw="flex flex-col w-full" style={{ padding: '60px 70px' }}>
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          height: '100%',
+          backgroundColor: '#0A0520',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            padding: '60px 70px',
+          }}
+        >
           {/* Top gradient border */}
           <div
-            tw="flex w-full mb-10"
             style={{
+              display: 'flex',
+              width: '100%',
               height: 4,
               background: 'linear-gradient(90deg, #3206A4 0%, #6B2AE8 100%)',
+              marginBottom: 40,
             }}
           />
 
           {/* Blog badge and tags container */}
-          <div tw="flex flex-col mb-10">
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              marginBottom: 40,
+            }}
+          >
             {/* Blog badge */}
-            <div tw="flex items-center mb-5">
-              <div tw="flex rounded-full" style={{ width: 6, height: 6, backgroundColor: '#6B2AE8', marginRight: 12 }} />
-              <div tw="flex text-xl font-bold" style={{ color: '#6B2AE8' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                marginBottom: 20,
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  width: 6,
+                  height: 6,
+                  borderRadius: '50%',
+                  backgroundColor: '#6B2AE8',
+                  marginRight: 12,
+                }}
+              />
+              <div
+                style={{
+                  display: 'flex',
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: '#6B2AE8',
+                }}
+              >
                 BLOG
               </div>
             </div>
 
             {/* Tags */}
-            <div tw="flex flex-wrap">
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+              }}
+            >
               {displayTags.map((tag, i) => (
                 <div
                   key={i}
-                  tw="flex px-3.5 py-1.5 rounded-2xl text-sm"
                   style={{
+                    display: 'flex',
+                    padding: '6px 14px',
                     marginRight: 8,
                     marginBottom: 8,
                     backgroundColor: 'rgba(107, 42, 232, 0.12)',
                     border: '1px solid rgba(107, 42, 232, 0.3)',
+                    borderRadius: 20,
+                    fontSize: 14,
                     color: '#A78BFA',
                   }}
                 >
@@ -79,27 +138,86 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           </div>
 
           {/* Main content */}
-          <div tw="flex flex-col flex-1">
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 1,
+            }}
+          >
             {/* Title */}
-            <div tw="flex text-5xl font-black text-white leading-tight mb-5">{title}</div>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 48,
+                fontWeight: 900,
+                color: '#FFFFFF',
+                lineHeight: 1.2,
+                marginBottom: 20,
+              }}
+            >
+              {title}
+            </div>
 
             {/* Summary */}
-            <div tw="flex text-xl leading-relaxed" style={{ color: '#A1A1AA' }}>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 20,
+                lineHeight: 1.6,
+                color: '#A1A1AA',
+              }}
+            >
               {summary}
             </div>
           </div>
 
           {/* Footer */}
-          <div tw="flex justify-between items-center pt-6 mt-10" style={{ borderTop: '1px solid rgba(107, 42, 232, 0.2)' }}>
-            <div tw="flex flex-col">
-              <div tw="flex text-lg font-semibold mb-1" style={{ color: '#E4E4E7' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingTop: 24,
+              marginTop: 40,
+              borderTop: '1px solid rgba(107, 42, 232, 0.2)',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  fontSize: 18,
+                  fontWeight: 600,
+                  marginBottom: 4,
+                  color: '#E4E4E7',
+                }}
+              >
                 Elmer Jacobo
               </div>
-              <div tw="flex text-sm" style={{ color: '#71717A' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  fontSize: 14,
+                  color: '#71717A',
+                }}
+              >
                 {formattedDate} • {post.readingTime}
               </div>
             </div>
-            <div tw="flex text-base font-semibold" style={{ color: '#6B2AE8' }}>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 16,
+                fontWeight: 600,
+                color: '#6B2AE8',
+              }}
+            >
               blog.elmerjacobo.dev
             </div>
           </div>
