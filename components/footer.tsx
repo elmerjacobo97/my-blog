@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { Github, Linkedin, Twitter, Mail, Heart, Code, Rss } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart, Code, Rss, Instagram } from 'lucide-react';
 
 const socialLinks = [
   { href: 'https://github.com/elmerjacobo97', icon: Github, label: 'GitHub' },
   { href: 'https://linkedin.com/in/elmerjacobo97', icon: Linkedin, label: 'LinkedIn' },
-  { href: 'https://twitter.com/elmerjacobo', icon: Twitter, label: 'Twitter' },
+  { href: 'https://instagram.com/elmerjacobo97', icon: Instagram, label: 'Instagram' },
   { href: 'mailto:contacto@elmerjacobo.dev', icon: Mail, label: 'Email' },
 ];
 
