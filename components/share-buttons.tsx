@@ -13,7 +13,9 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
 
   const shareOnTwitter = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(
+      url
+    )}`;
     window.open(twitterUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -30,7 +32,6 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm text-muted-foreground mr-2">Compartir:</span>
       <Button variant="outline" size="sm" onClick={shareOnTwitter} className="gap-2">
         <Twitter className="w-4 h-4" />
         Twitter

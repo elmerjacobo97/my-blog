@@ -243,7 +243,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="mt-6 flex items-center gap-3">
             <span className="text-sm text-muted-foreground flex items-center gap-1.5">
               <Share2 className="w-4 h-4" />
-              Compartir:
+              Compartir
             </span>
             <ShareButtons title={post.title} url={postUrl} />
           </div>
