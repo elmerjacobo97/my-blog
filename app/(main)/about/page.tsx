@@ -1,9 +1,19 @@
 import Link from 'next/link';
-import { ArrowLeft, Github, Linkedin, Mail, Code2, Coffee, Lightbulb } from 'lucide-react';
+import {
+  ArrowLeft,
+  Github,
+  Linkedin,
+  Mail,
+  Code2,
+  Lightbulb,
+  Rocket,
+  BookOpen,
+  ExternalLink,
+  Instagram,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 
 export const metadata = {
   title: 'Sobre mí | Blog - Elmer Jacobo',
@@ -36,158 +46,188 @@ export const metadata = {
   },
 };
 
+const techStack = {
+  frontend: ['React', 'React Native', 'Next.js', 'TypeScript', 'Tailwind CSS', 'shadcn/ui'],
+  backend: ['Node.js', 'Laravel', 'PostgreSQL', 'Prisma', 'REST APIs'],
+  tools: ['Git', 'VS Code', 'Vercel', 'Docker', 'Figma'],
+};
+
+const topics = [
+  'Guías paso a paso para configurar herramientas y frameworks',
+  'Soluciones a bugs complejos y errores comunes',
+  'Tips y mejores prácticas de desarrollo',
+  'Experiencias migrando proyectos y optimizando código',
+  'Configuraciones de deploy y DevOps',
+];
+
+const socialLinks = [
+  { href: 'https://github.com/elmerjacobo97', icon: Github, label: 'GitHub' },
+  { href: 'https://linkedin.com/in/elmerjacobo97', icon: Linkedin, label: 'LinkedIn' },
+  { href: 'https://instagram.com/elmerjacobo97', icon: Instagram, label: 'Instagram' },
+  { href: 'mailto:contacto@elmerjacobo.dev', icon: Mail, label: 'Email' },
+];
+
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      {/* Header */}
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
       <header className="mb-12 animate-fade-in">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Sobre mí</h1>
-        <p className="text-xl leading-relaxed">
-          Hola! Soy Elmer, desarrollador full-stack con pasión por construir aplicaciones web modernas y compartir lo
-          que aprendo en el camino.
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Sobre mí</h1>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          Hola! Soy Elmer, desarrollador full-stack con pasión por construir aplicaciones web y móviles modernas, y
+          compartir lo que aprendo en el camino.
         </p>
       </header>
 
       <div className="space-y-8">
-        {/* Who I Am */}
-        <Card className="border-glow">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Code2 className="w-5 h-5 text-primary" />
-              ¿Quién soy?
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="leading-relaxed">
-              Soy desarrollador web especializado en el ecosistema de React y Next.js. Me encanta trabajar en proyectos
-              que combinan buen diseño con código limpio y escalable.
-            </p>
-            <p className="leading-relaxed">
-              Actualmente trabajo construyendo aplicaciones web full-stack, desde la arquitectura del backend hasta
-              interfaces de usuario intuitivas. También dedico tiempo a crear contenido técnico para ayudar a otros
-              desarrolladores.
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* Why This Blog */}
-        <Card className="border-glow">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Lightbulb className="w-5 h-5 text-primary" />
-              ¿Por qué este blog?
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="leading-relaxed">
-              Este blog nació de mi necesidad de documentar soluciones a problemas que enfrento día a día. He aprendido
-              muchísimo de blogs de otros desarrolladores, y quiero devolver esa ayuda a la comunidad.
-            </p>
-            <p className="leading-relaxed">
-              Aquí comparto guías prácticas, soluciones a bugs complejos, configuraciones que me funcionan y reflexiones
-              sobre desarrollo web. Mi objetivo es que si alguien enfrenta el mismo problema que yo, pueda encontrar la
-              solución aquí.
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* Tech Stack */}
-        <Card className="border-glow">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Coffee className="w-5 h-5 text-primary" />
-              Tecnologías que uso
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-semibold mb-3">Frontend</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['React', 'React Native', 'Next.js', 'TypeScript', 'Tailwind CSS', 'shadcn/ui'].map((tech) => (
-                    <Badge key={tech}>{tech}</Badge>
-                  ))}
-                </div>
+        <Card className="border-border/50 overflow-hidden animate-fade-in stagger-1">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Code2 className="w-5 h-5 text-primary" />
               </div>
-              <div>
-                <h3 className="font-semibold mb-3">Backend & Tools</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Node.js', 'Laravel', 'PostgreSQL', 'Vercel', 'Git', 'VS Code'].map((tech) => (
-                    <Badge key={tech}>{tech}</Badge>
-                  ))}
+              <div className="space-y-3">
+                <h2 className="text-xl font-semibold">¿Quién soy?</h2>
+                <div className="space-y-3 text-muted-foreground">
+                  <p>
+                    Soy desarrollador web especializado en el ecosistema de React y Next.js. Me encanta trabajar en
+                    proyectos que combinan buen diseño con código limpio y escalable.
+                  </p>
+                  <p>
+                    Actualmente trabajo construyendo aplicaciones web full-stack, desde la arquitectura del backend
+                    hasta interfaces de usuario intuitivas.
+                  </p>
                 </div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* What I Write About */}
-        <Card className="border-glow">
-          <CardHeader>
-            <CardTitle>¿Sobre qué escribo?</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Guías paso a paso para configurar herramientas y frameworks</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Soluciones a bugs complejos y errores comunes</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Tips y mejores prácticas de desarrollo</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Experiencias migrando proyectos y optimizando código</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Configuraciones de deploy y DevOps</span>
-              </li>
-            </ul>
+        <Card className="border-border/50 overflow-hidden animate-fade-in stagger-2">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Lightbulb className="w-5 h-5 text-primary" />
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-xl font-semibold">¿Por qué este blog?</h2>
+                <div className="space-y-3 text-muted-foreground">
+                  <p>
+                    Este blog nació de mi necesidad de documentar soluciones a problemas que enfrento día a día. He
+                    aprendido muchísimo de blogs de otros desarrolladores, y quiero devolver esa ayuda a la comunidad.
+                  </p>
+                  <p>
+                    Aquí comparto guías prácticas, soluciones a bugs complejos, configuraciones que me funcionan y
+                    reflexiones sobre desarrollo web.
+                  </p>
+                </div>
+              </div>
+            </div>
           </CardContent>
         </Card>
 
-        <Separator />
+        <Card className="border-border/50 overflow-hidden animate-fade-in stagger-3">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Rocket className="w-5 h-5 text-primary" />
+              </div>
+              <div className="space-y-4 flex-1">
+                <h2 className="text-xl font-semibold">Tecnologías que uso</h2>
+                <div className="grid sm:grid-cols-3 gap-4">
+                  <div>
+                    <h3 className="text-sm font-medium mb-2 text-muted-foreground">Frontend</h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {techStack.frontend.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium mb-2 text-muted-foreground">Backend</h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {techStack.backend.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium mb-2 text-muted-foreground">Tools</h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {techStack.tools.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Contact */}
-        <div className="text-center space-y-6">
-          <h2 className="text-2xl font-bold">Conectemos</h2>
-          <p className="max-w-2xl mx-auto">
-            Si tienes preguntas, comentarios sobre algún artículo, o simplemente quieres charlar sobre desarrollo web,
-            no dudes en contactarme.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <a href="https://github.com/elmerjacobo97" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="gap-2">
-                <Github className="w-4 h-4" /> GitHub
-              </Button>
-            </a>
-            <a href="https://linkedin.com/in/elmerjacobo97" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="gap-2">
-                <Linkedin className="w-4 h-4" /> LinkedIn
-              </Button>
-            </a>
-            <a href="mailto:contacto@elmerjacobo.dev">
-              <Button variant="outline" className="gap-2">
-                <Mail className="w-4 h-4" /> Email
-              </Button>
-            </a>
+        <Card className="border-border/50 overflow-hidden animate-fade-in stagger-4">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <BookOpen className="w-5 h-5 text-primary" />
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-xl font-semibold">¿Sobre qué escribo?</h2>
+                <ul className="space-y-2">
+                  {topics.map((topic, index) => (
+                    <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0" />
+                      <span>{topic}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="pt-6 animate-fade-in stagger-5">
+          <div className="text-center space-y-6">
+            <div>
+              <h2 className="text-2xl font-bold mb-2">Conectemos</h2>
+              <p className="text-muted-foreground max-w-lg mx-auto">
+                Si tienes preguntas o comentarios sobre algún artículo, no dudes en contactarme.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a key={social.href} href={social.href} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" className="gap-2">
+                      <Icon className="w-4 h-4" />
+                      {social.label}
+                    </Button>
+                  </a>
+                );
+              })}
+            </div>
+
             <a href="https://elmerjacobo.dev" target="_blank" rel="noopener noreferrer">
-              <Button className="gap-2">Ver mi portafolio</Button>
+              <Button className="gap-2">
+                Ver mi portafolio
+                <ExternalLink className="w-4 h-4" />
+              </Button>
             </a>
           </div>
         </div>
 
-        {/* Back to blog */}
-        <div className="text-center pt-8">
+        <div className="pt-8 border-t border-border">
           <Link href="/">
-            <Button variant="ghost" className="gap-2">
-              <ArrowLeft className="w-4 h-4" /> Volver al blog
+            <Button variant="ghost" className="gap-2 -ml-3">
+              <ArrowLeft className="w-4 h-4" />
+              Volver al blog
             </Button>
           </Link>
         </div>
