@@ -31,18 +31,18 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <Button variant="outline" size="sm" onClick={shareOnTwitter} className="gap-2">
+    <div className="flex items-center gap-2 flex-wrap">
+      <Button variant="outline" size="sm" onClick={shareOnTwitter} className="gap-1.5 h-8 px-2.5">
         <Twitter className="w-4 h-4" />
-        Twitter
+        <span className="hidden sm:inline">Twitter</span>
       </Button>
-      <Button variant="outline" size="sm" onClick={shareOnLinkedIn} className="gap-2">
+      <Button variant="outline" size="sm" onClick={shareOnLinkedIn} className="gap-1.5 h-8 px-2.5">
         <Linkedin className="w-4 h-4" />
-        LinkedIn
+        <span className="hidden sm:inline">LinkedIn</span>
       </Button>
-      <Button variant="outline" size="sm" onClick={copyLink} className="gap-2">
+      <Button variant="outline" size="sm" onClick={copyLink} className="gap-1.5 h-8 px-2.5">
         <LinkIcon className="w-4 h-4" />
-        {copied ? 'Copiado!' : 'Copiar link'}
+        <span className="hidden sm:inline">{copied ? 'Copiado!' : 'Copiar'}</span>
       </Button>
     </div>
   );
