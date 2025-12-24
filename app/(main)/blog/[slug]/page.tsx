@@ -14,6 +14,7 @@ import { Callout } from '@/components/mdx/callout';
 import { PostReactions } from '@/components/post-reactions';
 import { Comments } from '@/components/comments';
 import { ShareButtons } from '@/components/share-buttons';
+import { ViewCounter } from '@/components/view-counter';
 import 'highlight.js/styles/github-dark.css';
 
 export async function generateStaticParams() {
@@ -230,6 +231,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <Clock className="w-4 h-4" />
               <span>{post.readingTime}</span>
             </div>
+            <ViewCounter slug={slug} />
           </div>
 
           {/* Summary */}
