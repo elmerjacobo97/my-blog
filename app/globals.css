@@ -30,93 +30,53 @@
   --color-ring: var(--ring);
 }
 
-/* ============================================
-   🎨 PALETA DE COLORES - TEMA CLARO
-   ============================================ */
 :root {
-  --radius: 0.625rem; /* 10px - Border radius global */
-
-  /* 🌟 COLORES BASE */
-  --background: oklch(98% 0.002 280); /* #FAFAFF - Fondo blanco con tinte púrpura */
-  --foreground: oklch(12% 0.03 280); /* #0D0626 - Negro púrpura profundo */
-
-  /* 📦 CARDS Y POPOVERS */
-  --card: oklch(100% 0 0); /* #FFFFFF - Tarjetas blanco puro */
-  --card-foreground: oklch(12% 0.03 280); /* #0D0626 - Texto en tarjetas */
-  --popover: oklch(100% 0 0); /* #FFFFFF - Fondo popovers */
-  --popover-foreground: oklch(12% 0.03 280); /* #0D0626 - Texto popovers */
-
-  /* 🎯 COLOR PRINCIPAL (TU PÚRPURA) */
-  --primary: oklch(35% 0.22 280); /* #3206A4 - Tu color favorito! */
-  --primary-foreground: oklch(98% 0.002 280); /* #FAFAFF - Texto sobre primary */
-
-  /* 🎨 COLOR SECUNDARIO (Púrpura más claro) */
-  --secondary: oklch(92% 0.04 280); /* #EDE8FA - Púrpura muy suave */
-  --secondary-foreground: oklch(25% 0.1 280); /* #1F0B5C - Púrpura oscuro */
-
-  /* 🔇 COLORES NEUTROS (Grises con tinte púrpura) */
-  --muted: oklch(94% 0.01 280); /* #F0F0F5 - Gris púrpura claro */
-  --muted-foreground: oklch(48% 0.04 280); /* #6B6287 - Gris púrpura medio */
-
-  /* ✨ ACCENT (Hover states, highlights) */
-  --accent: oklch(90% 0.05 280); /* #E3DAF7 - Púrpura pastel */
-  --accent-foreground: oklch(20% 0.08 280); /* #170947 - Púrpura muy oscuro */
-
-  /* ⚠️ ESTADOS (Error, Success, Warning) */
-  --destructive: oklch(58% 0.2 15); /* #E74C3C - Rojo para errores */
-  --success: oklch(62% 0.15 145); /* #27AE60 - Verde para éxito */
-  --warning: oklch(72% 0.18 65); /* #F39C12 - Naranja para advertencias */
-
-  /* 🖼️ BORDES Y ELEMENTOS */
-  --border: oklch(88% 0.02 280); /* #D9D4E5 - Borde púrpura suave */
-  --input: oklch(88% 0.02 280); /* #D9D4E5 - Bordes de inputs */
-  --ring: oklch(35% 0.22 280); /* #3206A4 - Focus rings (tu púrpura) */
+  --radius: 0.625rem;
+  --background: oklch(98% 0.002 280);
+  --foreground: oklch(12% 0.03 280);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(12% 0.03 280);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(12% 0.03 280);
+  --primary: oklch(35% 0.22 280);
+  --primary-foreground: oklch(98% 0.002 280);
+  --secondary: oklch(92% 0.04 280);
+  --secondary-foreground: oklch(25% 0.1 280);
+  --muted: oklch(94% 0.01 280);
+  --muted-foreground: oklch(48% 0.04 280);
+  --accent: oklch(90% 0.05 280);
+  --accent-foreground: oklch(20% 0.08 280);
+  --destructive: oklch(58% 0.2 15);
+  --success: oklch(62% 0.15 145);
+  --warning: oklch(72% 0.18 65);
+  --border: oklch(88% 0.02 280);
+  --input: oklch(88% 0.02 280);
+  --ring: oklch(35% 0.22 280);
 }
 
-/* ============================================
-   🌙 PALETA DE COLORES - TEMA OSCURO
-   ============================================ */
 .dark {
-  /* 🌟 COLORES BASE */
-  --background: oklch(8% 0.04 280); /* #0A0520 - Negro púrpura (AJUSTADO) */
-  --foreground: oklch(95% 0.005 280); /* #F5F5F8 - Texto claro con tinte púrpura */
-
-  /* 📦 CARDS Y POPOVERS */
-  --card: oklch(12% 0.05 280); /* #120931 - Tarjetas púrpura oscuro elevado */
-  --card-foreground: oklch(95% 0.005 280); /* #F5F5F8 - Texto en tarjetas */
-  --popover: oklch(12% 0.05 280); /* #120931 - Fondo popovers */
-  --popover-foreground: oklch(95% 0.005 280); /* #F5F5F8 - Texto popovers */
-
-  /* 🎯 COLOR PRINCIPAL (Púrpura más brillante para contraste) */
-  --primary: oklch(58% 0.22 280); /* #6B2AE8 - Versión brillante de tu púrpura */
-  --primary-foreground: oklch(98% 0.002 280); /* #FAFAFF - Texto sobre primary */
-
-  /* 🎨 COLOR SECUNDARIO */
-  --secondary: oklch(18% 0.08 280); /* #1A0D42 - Púrpura oscuro profundo */
-  --secondary-foreground: oklch(90% 0.02 280); /* #E6E3F0 - Texto claro púrpura */
-
-  /* 🔇 COLORES NEUTROS */
-  --muted: oklch(15% 0.04 280); /* #140A30 - Gris púrpura oscuro */
-  --muted-foreground: oklch(60% 0.03 280); /* #8E84A8 - Gris púrpura medio */
-
-  /* ✨ ACCENT */
-  --accent: oklch(20% 0.08 280); /* #1D0F47 - Púrpura oscuro para hover */
-  --accent-foreground: oklch(90% 0.02 280); /* #E6E3F0 - Texto sobre accent */
-
-  /* ⚠️ ESTADOS */
-  --destructive: oklch(65% 0.18 15); /* #E74C3C - Rojo más brillante */
-  --success: oklch(65% 0.13 145); /* #2ECC71 - Verde más brillante */
-  --warning: oklch(75% 0.16 65); /* #F1C40F - Amarillo más brillante */
-
-  /* 🖼️ BORDES Y ELEMENTOS */
-  --border: oklch(25% 0.05 280); /* #221652 - Borde púrpura oscuro */
-  --input: oklch(22% 0.06 280); /* #1C1147 - Input púrpura oscuro */
-  --ring: oklch(58% 0.22 280); /* #6B2AE8 - Focus rings púrpura brillante */
+  --background: oklch(8% 0.04 280);
+  --foreground: oklch(95% 0.005 280);
+  --card: oklch(12% 0.05 280);
+  --card-foreground: oklch(95% 0.005 280);
+  --popover: oklch(12% 0.05 280);
+  --popover-foreground: oklch(95% 0.005 280);
+  --primary: oklch(58% 0.22 280);
+  --primary-foreground: oklch(98% 0.002 280);
+  --secondary: oklch(18% 0.08 280);
+  --secondary-foreground: oklch(90% 0.02 280);
+  --muted: oklch(15% 0.04 280);
+  --muted-foreground: oklch(60% 0.03 280);
+  --accent: oklch(20% 0.08 280);
+  --accent-foreground: oklch(90% 0.02 280);
+  --destructive: oklch(65% 0.18 15);
+  --success: oklch(65% 0.13 145);
+  --warning: oklch(75% 0.16 65);
+  --border: oklch(25% 0.05 280);
+  --input: oklch(22% 0.06 280);
+  --ring: oklch(58% 0.22 280);
 }
 
-/* ============================================
-   🎨 CLASES UTILITARIAS PERSONALIZADAS
-   ============================================ */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -126,75 +86,159 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 
-  /* Animaciones removidas para evitar distracciones en un blog */
-
-  /* 🌈 GRADIENTES PERSONALIZADOS */
-  .gradient-primary {
-    background: linear-gradient(135deg, #3206a4 0%, #6b2ae8 100%);
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
   }
 
-  .gradient-hero {
-    background: linear-gradient(135deg, #0a0520 0%, #1a0d42 50%, #0a0520 100%);
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/50;
   }
 
-  .gradient-card {
-    background: linear-gradient(180deg, #120931 0%, #0a0520 100%);
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
   }
 
-  /* ✨ EFECTOS DE BRILLO PÚRPURA */
-  .glow-purple {
-    box-shadow: 0 0 20px rgba(107, 42, 232, 0.3);
-  }
-
-  .border-glow {
-    border: 1px solid rgba(107, 42, 232, 0.2);
-    box-shadow: 0 0 10px rgba(107, 42, 232, 0.1);
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
   }
 }
 
-/* Keyframes de animaciones removidos */
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(to right, var(--primary), var(--accent-foreground), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-/* ============================================
-   📊 REFERENCIA RÁPIDA HEX
-   ============================================
-   
-   🎨 TU PÚRPURA BASE: #3206A4
-   
-   TEMA CLARO:
-   -----------
-   Background:    #FAFAFF (blanco con tinte púrpura)
-   Foreground:    #0D0626 (negro púrpura)
-   Primary:       #3206A4 (TU PÚRPURA - oscuro e intenso)
-   Secondary:     #EDE8FA (púrpura muy claro)
-   Accent:        #E3DAF7 (púrpura pastel)
-   Muted:         #F0F0F5 (gris púrpura claro)
-   Border:        #D9D4E5 (borde púrpura suave)
-   
-   TEMA OSCURO:
-   ------------
-   Background:    #0A0520 (negro púrpura profundo - MEJORADO)
-   Foreground:    #F5F5F8 (blanco con tinte púrpura)
-   Primary:       #6B2AE8 (púrpura brillante - versión clara)
-   Secondary:     #1A0D42 (púrpura oscuro)
-   Card:          #120931 (tarjetas elevadas)
-   Muted:         #140A30 (gris púrpura oscuro)
-   Border:        #221652 (borde púrpura oscuro)
-   
-   GRADIENTES SUGERIDOS:
-   ---------------------
-   Hero:          #0A0520 → #1A0D42 → #0A0520
-   Primary:       #3206A4 → #6B2AE8
-   Cards:         #120931 → #0A0520
-   
-   ESTADOS (ambos temas):
-   ----------------------
-   Error:         #E74C3C (rojo)
-   Success:       #27AE60 / #2ECC71 (verde)
-   Warning:       #F39C12 / #F1C40F (amarillo)
-   
-   EFECTOS ESPECIALES:
-   -------------------
-   Glow/Shadow:   rgba(107, 42, 232, 0.3-0.6)
-   Hover Lift:    rgba(107, 42, 232, 0.4)
-   
-   ============================================ */
+  .gradient-primary {
+    background: linear-gradient(135deg, oklch(35% 0.22 280) 0%, oklch(58% 0.22 280) 100%);
+  }
+
+  .dark .gradient-primary {
+    background: linear-gradient(135deg, oklch(58% 0.22 280) 0%, oklch(68% 0.2 280) 100%);
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 15px rgba(107, 42, 232, 0.15);
+  }
+
+  .glow-md {
+    box-shadow: 0 0 25px rgba(107, 42, 232, 0.2);
+  }
+
+  .dark .glow-sm {
+    box-shadow: 0 0 15px rgba(107, 42, 232, 0.25);
+  }
+
+  .dark .glow-md {
+    box-shadow: 0 0 25px rgba(107, 42, 232, 0.3);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(107, 42, 232, 0.12);
+  }
+
+  .dark .hover-lift:hover {
+    box-shadow: 0 8px 30px rgba(107, 42, 232, 0.2);
+  }
+
+  .glass {
+    @apply bg-background/80 backdrop-blur-md border-b border-border/50;
+  }
+
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(107, 42, 232, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(107, 42, 232, 0.4);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+.stagger-5 {
+  animation-delay: 0.5s;
+}
+
+::selection {
+  background: rgba(107, 42, 232, 0.2);
+  color: inherit;
+}

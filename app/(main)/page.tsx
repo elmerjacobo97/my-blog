@@ -11,7 +11,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Blog - Elmer Jacobo | Full Stack Developer',
-    description: 'Tutoriales y guías prácticas sobre desarrollo Full Stack, React Native, Next.js, TypeScript y desarrollo web moderno',
+    description:
+      'Tutoriales y guías prácticas sobre desarrollo Full Stack, React Native, Next.js, TypeScript y desarrollo web moderno',
     url: 'https://blog.elmerjacobo.dev',
     siteName: 'Blog - Elmer Jacobo',
     locale: 'es_PE',
@@ -38,7 +39,7 @@ export default function BlogHome() {
   const posts = getAllPosts();
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
       <SearchClient posts={posts} />
     </div>
   );
