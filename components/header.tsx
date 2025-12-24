@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, Home, User, Briefcase, Code, Rss } from 'lucide-react';
+import { Menu, Home, User, ExternalLink, Code, Rss } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from '@/components/mode-toggle';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { href: '/', label: 'Blog', icon: Home },
   { href: '/about', label: 'Sobre mí', icon: User },
-  { href: 'https://elmerjacobo.dev', label: 'Portafolio', icon: Briefcase, external: true },
+  { href: 'https://elmerjacobo.dev', label: 'Portafolio', icon: ExternalLink, external: true },
 ];
 
 export function Header() {
