@@ -16,7 +16,12 @@ interface SearchClientProps {
 
 function formatDate(dateStr: string) {
   try {
-    return new Date(dateStr).toLocaleDateString('es-PE', { year: 'numeric', month: 'short', day: 'numeric' });
+    return new Date(dateStr).toLocaleDateString('es-PE', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      timeZone: 'UTC',
+    });
   } catch {
     return dateStr;
   }
@@ -103,12 +108,15 @@ export function SearchClient({ posts }: SearchClientProps) {
   });
 
   // Tags únicos con conteo
-  const tagCounts = posts.reduce((acc, post) => {
-    post.tags.forEach((tag) => {
-      acc[tag] = (acc[tag] || 0) + 1;
-    });
-    return acc;
-  }, {} as Record<string, number>);
+  const tagCounts = posts.reduce(
+    (acc, post) => {
+      post.tags.forEach((tag) => {
+        acc[tag] = (acc[tag] || 0) + 1;
+      });
+      return acc;
+    },
+    {} as Record<string, number>
+  );
 
   const sortedTags = Object.entries(tagCounts)
     .sort((a, b) => b[1] - a[1])
