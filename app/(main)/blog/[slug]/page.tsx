@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { getPostBySlug, getAllSlugs, getAllPosts } from '@/lib/posts';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypeHighlight from 'rehype-highlight';
+import langDart from 'highlight.js/lib/languages/dart';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkGfm from 'remark-gfm';
@@ -259,7 +260,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             options={{
               mdxOptions: {
                 remarkPlugins: [remarkGfm],
-                rehypePlugins: [rehypeHighlight, rehypeSlug, rehypeAutolinkHeadings],
+                rehypePlugins: [
+                  [rehypeHighlight, { languages: { dart: langDart } }],
+                  rehypeSlug,
+                  rehypeAutolinkHeadings,
+                ],
               },
             }}
           />
