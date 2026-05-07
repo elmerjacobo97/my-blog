@@ -1,61 +1,29 @@
-# AGENTS.md
+# AGENTS.md — my-blog
 
 ## Commands
 
-- `pnpm dev` — dev server (http://localhost:3000)
-- `pnpm build` — production build (runs Next.js build + MDX compilation)
-- `pnpm lint` — ESLint (flat config, eslint-config-next core-web-vitals + typescript)
+- Run commands from `my-blog/`: `pnpm dev`, `pnpm build`, `pnpm start`, `pnpm lint`.
+- No test runner is configured.
+- No `typecheck` script exists; use `pnpm exec tsc --noEmit` for focused type checking.
+- ESLint is flat config via `eslint.config.mjs` with `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`.
 
-No test runner is configured. No `typecheck` script — type checking runs through `next build` or editor integration.
+## Stack And Conventions
 
-## Stack
+- Next.js 16 App Router + React 19 + TypeScript strict + Tailwind CSS 4 + pnpm.
+- `@/*` maps to the `my-blog/` project root.
+- Tailwind config lives in `app/globals.css` through `@theme`; there is no `tailwind.config.*`.
+- Dark mode uses `next-themes` with `attribute="class"` and `@custom-variant dark (&:is(.dark *))`; keep `suppressHydrationWarning` on `<html>`.
+- Palette is purple OKLCH hue 280 in `app/globals.css`.
+- shadcn/ui is `new-york`, RSC enabled, `baseColor: neutral`, icon library `lucide`; UI primitives go in `@/components/ui`.
+- Use `cn()` from `@/lib/utils` for class merging.
+- Blog content is Spanish; code and comments are English.
 
-- Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · pnpm
-- MDX content via `next-mdx-remote` + `gray-matter` + `reading-time`
-- shadcn/ui (new-york style, RSC mode) — components go in `@/components/ui`
-- Radix UI primitives · Lucide icons · highlight.js + rehype plugins
-- Comments: Giscus (GitHub Discussions)
-- Analytics: Vercel Analytics + Speed Insights
-- Deployed on Vercel
+## Content And Routing
 
-## Architecture
-
-```
-app/
-  (main)/          # Route group: Header + Footer wrapper
-  (main)/about/
-  (main)/blog/     # Blog listing (uses lib/posts.ts — server-only)
-  blog/[slug]/     # Dynamic route for individual posts (opengraph-image.tsx only)
-  rss.xml/         # RSS feed route
-  layout.tsx        # Root: Inter font, ThemeProvider, Analytics, SpeedInsights
-  globals.css       # Tailwind 4 + custom purple oklch palette + dark mode
-  robots.ts / sitemap.ts / manifest.ts
-
-content/blog/       # MDX posts (frontmatter: title, date, summary, tags)
-components/
-  ui/              # shadcn/ui primitives (button, card, sheet, etc.)
-  mdx/             # Custom MDX renderers (callout, code-block, pre)
-  *.tsx            # App components (header, footer, comments, toc, etc.)
-
-lib/
-  posts.ts         # Server-only: fs + gray-matter + reading-time — DO NOT import in client components
-  utils.ts         # cn() utility (clsx + tailwind-merge)
-```
-
-## Key Conventions
-
-- **Path alias**: `@/*` maps to project root (`tsconfig.json`)
-- **Language**: Blog content is in Spanish; UI code and comments in English
-- **MDX frontmatter**: requires `title`, `date` (YYYY-MM-DD), `summary`, `tags` (string array)
-- **`lib/posts.ts`** uses Node `fs` — server-only, never import in `'use client'` files
-- **Tailwind CSS 4** — config lives in `globals.css` via `@theme` directive, not in a separate config file
-- **Dark mode**: `@custom-variant dark (&:is(.dark *))` — requires `suppressHydrationWarning` on `<html>` (already set)
-- **Custom color palette**: Purple oklch-based theme (hue 280). Design tokens in `:root` / `.dark` CSS vars
-- **shadcn/ui** style: new-york, RSC-enabled. Add components via `npx shadcn@latest add <component>`
-
-## Gotchas
-
-- No standalone `typecheck` script — use `pnpm build` or `npx tsc --noEmit` for type checking
-- Posts are sorted by date descending in `getAllPosts()` — new posts appear first
-- `getPostBySlug()` returns `null` on missing files, not an error — handle accordingly
-- The `(main)` route group is for layout only; the `blog/[slug]` route is outside it (no shared header/footer unless explicitly included)
+- MDX posts live in `content/blog/*.mdx` with frontmatter `title`, `date`, `summary`, and `tags`.
+- `lib/posts.ts` uses Node `fs`, `gray-matter`, and `reading-time`; keep it server-only and never import it from `'use client'` components.
+- `getPostBySlug()` returns `null` for missing files; route code calls `notFound()` after checking.
+- `getAllPosts()` sorts posts by date descending.
+- `app/(main)/layout.tsx` wraps pages with Header + Footer, including `app/(main)/blog/[slug]/page.tsx`.
+- Post Open Graph images are under `app/blog/[slug]/opengraph-image.tsx`, separate from the page route group.
+- MDX rendering is in `app/(main)/blog/[slug]/page.tsx` via `next-mdx-remote/rsc`, `remark-gfm`, `rehype-highlight`, `rehype-slug`, and `rehype-autolink-headings`.
