@@ -287,7 +287,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <h2 className="text-xl font-bold mb-6">Artículos relacionados</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {relatedPosts.map((relatedPost) => (
-                <Card key={relatedPost.slug} className="hover-lift border-border/50">
+                <Card key={relatedPost.slug} className="border-border/50 transition-colors hover:border-border hover:bg-muted/20">
                   <CardContent className="p-4">
                     <Link href={`/blog/${relatedPost.slug}`} className="block group">
                       <h4 className="font-medium group-hover:text-primary transition-colors line-clamp-2 mb-2 text-sm">

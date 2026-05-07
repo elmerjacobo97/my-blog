@@ -47,17 +47,17 @@ export const metadata = {
 };
 
 const techStack = {
-  frontend: ['React', 'React Native', 'Next.js', 'TypeScript', 'Tailwind CSS', 'shadcn/ui'],
-  backend: ['Node.js', 'Laravel', 'PostgreSQL', 'Prisma', 'REST APIs'],
-  tools: ['Git', 'VS Code', 'Vercel', 'Docker', 'Figma'],
+  frontend: ['React', 'Next.js', 'TypeScript', 'React Native', 'Flutter', 'Tailwind CSS', 'TanStack Query', 'Zustand'],
+  backend: ['Laravel', 'Node.js', 'PostgreSQL', 'Prisma', 'REST APIs'],
+  tools: ['Git', 'Vercel', 'GCP', 'Docker', 'Vitest', 'Playwright'],
 };
 
 const topics = [
-  'Guías paso a paso para configurar herramientas y frameworks',
+  'React Native, Expo, Next.js y TypeScript — guías prácticas y reales',
   'Soluciones a bugs complejos y errores comunes',
-  'Tips y mejores prácticas de desarrollo',
-  'Experiencias migrando proyectos y optimizando código',
-  'Configuraciones de deploy y DevOps',
+  'Herramientas de desarrollo: MCPs, Claude Code, OpenCode y más',
+  'Configuraciones de deploy, DevOps y entornos',
+  'Migraciones, optimizaciones y decisiones de stack',
 ];
 
 const socialLinks = [
@@ -73,8 +73,8 @@ export default function AboutPage() {
       <header className="mb-12 animate-fade-in">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Sobre mí</h1>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Hola! Soy Elmer, desarrollador full-stack con pasión por construir aplicaciones web y móviles modernas, y
-          compartir lo que aprendo en el camino.
+          Hola, soy Elmer — desarrollador Full Stack con más de 4 años de experiencia construyendo productos web y
+          móviles. Comparto lo que aprendo construyendo y explorando herramientas.
         </p>
       </header>
 
@@ -89,12 +89,13 @@ export default function AboutPage() {
                 <h2 className="text-xl font-semibold">¿Quién soy?</h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p>
-                    Soy desarrollador web especializado en el ecosistema de React y Next.js. Me encanta trabajar en
-                    proyectos que combinan buen diseño con código limpio y escalable.
+                    Soy desarrollador Full Stack con más de 4 años construyendo productos digitales reales. Empecé
+                    en mobile (React Native y Flutter) y fui creciendo hacia frontend web y backend dentro del mismo
+                    equipo.
                   </p>
                   <p>
-                    Actualmente trabajo construyendo aplicaciones web full-stack, desde la arquitectura del backend
-                    hasta interfaces de usuario intuitivas.
+                    Actualmente en ABEHA, donde trabajo en los tres frentes del stack: apps móviles, dashboards web
+                    con React/TypeScript e APIs con Laravel.
                   </p>
                 </div>
               </div>
@@ -116,8 +117,8 @@ export default function AboutPage() {
                     aprendido muchísimo de blogs de otros desarrolladores, y quiero devolver esa ayuda a la comunidad.
                   </p>
                   <p>
-                    Aquí comparto guías prácticas, soluciones a bugs complejos, configuraciones que me funcionan y
-                    reflexiones sobre desarrollo web.
+                    Aquí comparto guías prácticas, soluciones a bugs complejos, integraciones de herramientas (MCPs,
+                    IA, flujos de desarrollo) y todo lo que me ayuda a trabajar mejor.
                   </p>
                 </div>
               </div>

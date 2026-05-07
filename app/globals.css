@@ -141,16 +141,7 @@
   }
 
   .hover-lift {
-    @apply transition-all duration-300;
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(107, 42, 232, 0.12);
-  }
-
-  .dark .hover-lift:hover {
-    box-shadow: 0 8px 30px rgba(107, 42, 232, 0.2);
+    @apply transition-colors duration-200;
   }
 
   .glass {

@@ -30,7 +30,7 @@ function formatDate(dateStr: string) {
 function PostCard({ post, featured = false }: { post: PostData; featured?: boolean }) {
   return (
     <Card
-      className={cn('group hover-lift border-border/50 overflow-hidden', featured && 'md:col-span-2 border-primary/20')}
+      className={cn('group border-border/50 overflow-hidden transition-colors hover:border-border hover:bg-muted/20', featured && 'md:col-span-2')}
     >
       <CardContent className="p-0">
         <Link href={`/blog/${post.slug}`} className="block p-5 sm:p-6">
@@ -135,14 +135,11 @@ export function SearchClient({ posts }: SearchClientProps) {
       <header className="space-y-6 animate-fade-in">
         <div className="space-y-3">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-            Blog de{' '}
-            <span className="gradient-text bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Desarrollo
-            </span>
+            Artículos
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Artículos sobre desarrollo web y móvil. React Native, Next.js, TypeScript y buenas prácticas. Comparto lo
-            que aprendo construyendo aplicaciones.
+            Guías, soluciones y tutoriales sobre desarrollo web, móvil y herramientas modernas. Comparto lo que
+            aprendo construyendo productos reales.
           </p>
         </div>
 
@@ -281,7 +278,7 @@ export function SearchClient({ posts }: SearchClientProps) {
         </Card>
 
         {/* CTA Card */}
-        <Card className="p-5 border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+        <Card className="p-5 border-border/50">
           <h3 className="font-semibold mb-2">¿Te gusta el contenido?</h3>
           <p className="text-sm text-muted-foreground mb-4">
             Sígueme en GitHub para más proyectos y código open source.
